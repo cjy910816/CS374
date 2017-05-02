@@ -1,0 +1,10 @@
+<div class="cart-container" [style.height]="height+'px'">
+    this is cart
+  <span *ngIf="isFold">
+    <button type="button" class="btn btn-default pull-right" (click)="unfold()" ><em class="icon-arrow-down"></em> </button>
+  </span>
+  <span *ngIf="!isFold">
+    <button type="button" class="btn btn-default pull-right" (click)="fold()" ><em class="icon-arrow-up"></em> </button>
+  </span>
+
+</div>
