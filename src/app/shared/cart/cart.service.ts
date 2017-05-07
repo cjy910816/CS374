@@ -13,8 +13,9 @@ export class CartService {
       this.items.next(items);
     }
 
-    removeItem(item){
-      let items = this.items.getValue().filter(i => i !== item);
+    removeItemAt(index){
+      let items = this.items.getValue();
+      items.splice(index, 1);
       this.items.next(items);
     }
 

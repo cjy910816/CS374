@@ -11,6 +11,12 @@ export class CartComponent implements OnInit {
   private items:Object[] = [];
   private height:number = 120;
   private totalPrice:number = 0;
+  private progressBarMax:number = 30000;
+  private progressBarClasses:string[] = [
+    "progress-bar-success progress-bar-striped",
+    "progress-bar-complete progress-bar-striped"
+  ];
+
   public isFold:boolean = true;
 
     constructor(public cartService: CartService) {
@@ -18,7 +24,10 @@ export class CartComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.cartService.getItems().subscribe(items => this.items = items);
+      this.cartService.getItems().subscribe((items) => {
+        this.items = items;
+        this.calculateTotalPrice();
+      });
     }
 
     fold(){
@@ -33,6 +42,19 @@ export class CartComponent implements OnInit {
 
   readyAlert(){
       alert("준비중 입니다.");
+  }
+
+  removeItemAt(i){
+    this.cartService.removeItemAt(i);
+  }
+
+  calculateTotalPrice(){
+    this.totalPrice = 0;
+    for(let item of this.items){
+      this.totalPrice += item['price'];
+    }
+    if(this.totalPrice > 30000) this.progressBarMax = this.totalPrice;
+    else this.progressBarMax = 30000;
   }
 
 }

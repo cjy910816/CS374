@@ -19,4 +19,35 @@
   & > .body{
     width: 100%;
   }
+
+  .status-bar{
+    margin: 0;
+    padding: 10px;
+  }
+
+  .progressbar-section{
+    position: relative;
+    & > #freeship-graph{
+      position: absolute;
+      top: 0;
+      width: 95%;
+      background: transparent;
+      overflow: visible;
+
+      & > #freeship-progress-bar{
+        opacity: 0.4;
+      }
+
+      &:after{
+        position: absolute;
+        margin-top: -20px;
+        content: url("/image/delivery_free.png");
+      }
+    }
+  }
+
+  .items{
+    height: 350px;
+    overflow-y: scroll;;
+  }
 }

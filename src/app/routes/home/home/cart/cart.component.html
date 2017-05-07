@@ -2,46 +2,48 @@
   <div class="header clearfix">
     나의 장바구니
     <span *ngIf="isFold">
-      <button type="button" class="btn btn-transparent pull-right" (click)="unfold()" ><em class="icon-arrow-down"></em> </button>
+      <button type="button" class="btn btn-transparent pull-right" (click)="unfold()"><em class="icon-arrow-down"></em> </button>
     </span>
     <span *ngIf="!isFold">
-      <button type="button" class="btn btn-transparent pull-right" (click)="fold()" ><em class="icon-arrow-up"></em> </button>
+      <button type="button" class="btn btn-transparent pull-right" (click)="fold()"><em
+        class="icon-arrow-up"></em> </button>
     </span>
   </div>
-  <div class="body">
-    <div class="status-bar">
-      <div class="col-sm-1">
-        주문금액
-      </div>
-      <div class="progressbar-section col-sm-8">
-        <div id="price-graph" class="progress">
-          <div class="progress-bar progress-bar-success progress-bar-striped" style="width: 23.903675538656525%">
-            9,430
-          </div>
-        </div>
-        <div id="freeship-graph" class="progress">
-          <div id="freeship-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="text-align: right; width: 76.0456%;"></div>
+  <div class="status-bar row">
+    <div class="pull-left">
+      주문금액
+    </div>
+    <div class="progressbar-section col-sm-8 pull-left">
+      <div id="price-graph" class="progress">
+        <div *ngFor="let item of items; let i = index" [attr.data-index]="i"
+             class="progress-bar" [ngClass]="progressBarClasses[i%2]"
+             [style.width]="(item['price']/progressBarMax*100) + '%'" >
+          {{item['price']}}
         </div>
       </div>
-      <div id="price-section col-sm-2">
-        <div>Total {{totalPrice}} 원</div>
-        <div>(무료 배송)</div>
-      </div>
-      <div class="buttons col-sm-1">
-        <button type="button" class="btn btn-default" (click)="readyAlert()">주문하기</button>
+      <div id="freeship-graph" class="progress">
+        <div id="freeship-progress-bar" class="progress-bar" role="progressbar"
+             [style.width]="(30000/progressBarMax*100) + '%'" ></div>
       </div>
     </div>
-    <div class="items clearfix">
-      <div *ngFor="let item of items" class="col-sm-2">
-        <div class="thumbnail">
-          <span class="close">
+    <div id="price-section" class="col-sm-offset-1 pull-left">
+      <div>Total {{totalPrice}} 원</div>
+      <div>(무료 배송)</div>
+    </div>
+    <div class="buttons pull-left">
+      <button type="button" class="btn btn-default" (click)="readyAlert()">주문하기</button>
+    </div>
+  </div>
+  <div class="row items clearfix">
+    <div *ngFor="let item of items; let i = index" class="col-sm-2" [attr.data-index]="i">
+      <div class="thumbnail">
+          <span class="close" (click)="removeItemAt(i)">
             <em class="fa fa-times"></em>
           </span>
-          <img src="{{item.img}}">
-          <div class="caption">
-            <h6>{{item.name}}</h6>
-            <div>{{item.price}}</div>
-          </div>
+        <img src="{{item.img}}">
+        <div class="caption">
+          <h6>{{item.name}}</h6>
+          <div>{{item.price}}</div>
         </div>
       </div>
     </div>
