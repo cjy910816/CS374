@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule } from '@angular/router';
 import { CartModule } from './home/cart.module';
+import { ItemListModule } from './home/itemList.module';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -10,7 +11,8 @@ const routes: Routes = [
 @NgModule({
     imports: [
       RouterModule.forChild(routes),
-      CartModule
+      CartModule,
+      ItemListModule
     ],
     declarations: [HomeComponent],
     exports: [

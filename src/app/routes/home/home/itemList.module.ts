@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'
-import { CartComponent } from './cart/cart.component';
+import { ItemListComponent } from './itemList/itemList.component';
 
 import { SharedModule } from '../../../shared/shared.module';
 
@@ -10,13 +10,12 @@ import { SharedModule } from '../../../shared/shared.module';
     SharedModule
   ],
   providers: [
-
   ],
   declarations: [
-    CartComponent
+    ItemListComponent
   ],
   exports: [
-    CartComponent
+    ItemListComponent
   ]
 })
-export class CartModule { }
+export class ItemListModule { }

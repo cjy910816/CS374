@@ -2,7 +2,7 @@
      Component: button-extra
  ========================================================================== */
 
-// 
+//
 // Extension for Bootstrap buttons
 // ------------------------------------
 
@@ -41,6 +41,10 @@
   @include button-variant(#fff, $brand-pink, rgba(0,0,0,0));
 }
 
+.btn-transparent {
+  @include button-variant(#fff, transparent, rgba(0,0,0,0));
+}
+
 // Flat square button
 
 .btn-flat {
@@ -56,7 +60,7 @@
   font-size: 18px;
 }
 
-// Button square 
+// Button square
 
 .btn-square {
   border-radius: 0;
@@ -136,7 +140,7 @@ $btn-fw-lg:       140px;
 
 
 // Button Circle
-// ----------------------------------- 
+// -----------------------------------
 
 .btn-circle {
   $sz: 35px;
