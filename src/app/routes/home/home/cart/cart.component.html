@@ -18,7 +18,7 @@
         <div *ngFor="let item of items; let i = index" [attr.data-index]="i"
              class="progress-bar" [ngClass]="progressBarClasses[i%2]"
              [style.width]="(item['price']/progressBarMax*100) + '%'" >
-          {{item['price']}}
+          {{item['price'] | currency:'KRW':true}}
         </div>
       </div>
       <div id="freeship-graph" class="progress">
@@ -27,8 +27,9 @@
       </div>
     </div>
     <div id="price-section" class="col-sm-offset-1 pull-left">
-      <div>Total {{totalPrice}} 원</div>
-      <div>(무료 배송)</div>
+      <div>Total {{totalPrice| currency:'KRW':true}}</div>
+      <div *ngIf="totalPrice < 30000" class="text-danger">(배송비 별도)</div>
+      <div *ngIf="totalPrice >= 30000" class="text-primary">(무료 배송)</div>
     </div>
     <div class="buttons pull-left">
       <button type="button" class="btn btn-default" (click)="readyAlert()">주문하기</button>
@@ -43,7 +44,7 @@
         <img src="{{item.img}}">
         <div class="caption">
           <h6>{{item.name}}</h6>
-          <div>{{item.price}}</div>
+          <div>{{item.price| currency:'KRW':true}}</div>
         </div>
       </div>
     </div>

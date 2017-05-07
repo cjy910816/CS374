@@ -1,7 +1,11 @@
 @import '../../../../shared/styles/app/variables.scss';
 
-.item{
-  .thumbnail .caption h5{
-    height: 50px;
+.item-list-container{
+  margin-bottom: 100px;
+  .item{
+    .thumbnail .caption h5{
+      height: 50px;
+    }
   }
 }
+
