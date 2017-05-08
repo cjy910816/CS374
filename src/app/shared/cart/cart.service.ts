@@ -15,6 +15,12 @@ export class Item{
     this.price = price;
     this.count = 1;
   }
+
+  totalPrice() {
+    return this.price * this.count;
+  }
+
+
 }
 
 @Injectable()
