@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import Any = jasmine.Any;
 import {CartService, Item} from "../../../../shared/cart/cart.service";
+import * as _ from "lodash";
 
 
 @Component({
@@ -38,7 +39,7 @@ export class ItemListComponent implements OnInit {
   }
 
   addItem(item){
-    this.cartService.addItem(item);
+    this.cartService.addItem(_.clone(item));
   }
 
 }

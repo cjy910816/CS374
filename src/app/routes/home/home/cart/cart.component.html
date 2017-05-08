@@ -17,8 +17,8 @@
       <div id="price-graph" class="progress">
         <div *ngFor="let item of items; let i = index" [attr.data-index]="i"
              class="progress-bar" [ngClass]="progressBarClasses[i%2]"
-             [style.width]="(item['price']/progressBarMax*100) + '%'" >
-          {{item['price'] | currency:'KRW':true}}
+             [style.width]="(item.totalPrice()/progressBarMax*100) + '%'" >
+          {{ item.totalPrice() | currency:'KRW':true}}
         </div>
       </div>
       <div id="freeship-graph" class="progress">

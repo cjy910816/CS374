@@ -51,7 +51,7 @@ export class CartComponent implements OnInit {
   calculateTotalPrice(){
     this.totalPrice = 0;
     for(let item of this.items){
-      this.totalPrice += item['price'];
+      this.totalPrice += item['price'] * item['count'];
     }
     if(this.totalPrice > 30000) this.progressBarMax = this.totalPrice;
     else this.progressBarMax = 30000;
