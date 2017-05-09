@@ -4,10 +4,15 @@
       <img src="{{item.img}}">
       <div class="caption clearfix">
         <h5>{{item.name}}</h5>
-        <div>{{item.price | currency:'KRW':true}}</div>
         <div>
-          수량: 
-          <input type="number" min=1 max=99 value={{item.count}} [(ngModel)]="item.count" (change)="itemCountChanged($event)"/>
+          <span>{{item.price | currency:'KRW':true}}</span>
+          <div class="pull-right input-group item-count">
+            <input type="number" class="form-control" min=1 max=99 value={{item.count}} [(ngModel)]="item.count" (change)="itemCountChanged($event)"/>
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default" (click)="item.count = normalizeCount(item.count + 1)">+</button>
+              <button type="button" class="btn btn-default" (click)="item.count = normalizeCount(item.count - 1)">-</button>
+            </div>
+          </div>
         </div>
         <div class="pull-right">
           <button type="button" class="btn btn-primary" (click)="addItem(item)">장바구니 담기</button>

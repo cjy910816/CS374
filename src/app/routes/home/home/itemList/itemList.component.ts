@@ -45,7 +45,7 @@ export class ItemListComponent implements OnInit {
   normalizeCount(count){
     if (count < 1) return 1;
     if (99 < count) return 99;
-    return count;
+    return Math.floor(count);
   }
 
   itemCountChanged(event) {
