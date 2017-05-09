@@ -42,4 +42,15 @@ export class ItemListComponent implements OnInit {
     this.cartService.addItem(_.clone(item));
   }
 
+  normalizeCount(count){
+    if (count < 1) return 1;
+    if (99 < count) return 99;
+    return count;
+  }
+
+  itemCountChanged(event) {
+    event.target.value = this.normalizeCount(event.target.value);
+  }
+  
+
 }
