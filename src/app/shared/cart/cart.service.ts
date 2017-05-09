@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import * as _ from "lodash";
 
-export class Item{
+export class Item {
   public id:number;
   public name:string;
   public img:string;
@@ -10,7 +10,7 @@ export class Item{
   public count:number;
   public checked:boolean;
 
-  constructor(id, name, img, price){
+  constructor(id, name, img, price) {
     this.id = id;
     this.name = name;
     this.img = img;
@@ -20,13 +20,19 @@ export class Item{
   }
 
   totalPrice() {
-    if (!this.checked) return 0;
+    if (!this.checked) {
+      return 0;
+    }
     return this.price * this.count;
   }
 
   normalizeCount(count) {
-    if (count < 1) return 1;
-    if (99 < count) return 99;
+    if (count < 1) {
+      return 1;
+    }
+    if (99 < count) {
+        return 99;
+    }
     return Math.floor(count);
   }
   setCount(count) {
@@ -50,7 +56,7 @@ export class CartService {
 
     constructor() { }
 
-    addItem(item){
+    addItem(item) {
       let items = this.items.getValue();
       let itemInCart = _.find(items, (i) => i.id === item.id);
       if (itemInCart) {
@@ -68,13 +74,13 @@ export class CartService {
       this.items.next(items);
     }
 
-    removeItemAt(index){
+    removeItemAt(index) {
       let items = this.items.getValue();
       items.splice(index, 1);
       this.items.next(items);
     }
 
-    getItems(){
+    getItems() {
       return this.items.asObservable();
     }
 

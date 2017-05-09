@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from "../../../../shared/cart/cart.service";
-import * as _ from "lodash";
+import { CartService } from '../../../../shared/cart/cart.service';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-cart',
@@ -8,16 +8,16 @@ import * as _ from "lodash";
     styleUrls: ['cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  private items:Object[] = [];
-  private height:number = 120;
-  private totalPrice:number = 0;
-  private progressBarMax:number = 30000;
-  private progressBarClasses:string[] = [
-    "progress-bar-success progress-bar-striped",
-    "progress-bar-complete progress-bar-striped"
+  private items: Object[] = [];
+  private height = 120;
+  private totalPrice = 0;
+  private progressBarMax = 30000;
+  private progressBarClasses: string[] = [
+    'progress-bar-success progress-bar-striped',
+    'progress-bar-complete progress-bar-striped'
   ];
 
-  public isFold:boolean = true;
+  public isFold = true;
 
     constructor(public cartService: CartService) {
       this.totalPrice = 39450;
@@ -30,53 +30,59 @@ export class CartComponent implements OnInit {
       });
     }
 
-    fold(){
+    fold() {
       this.isFold = true;
       this.height = 120;
     }
 
-    unfold(){
+    unfold() {
       this.isFold = false;
       this.height = 500;
     }
 
-  readyAlert(){
-      alert("준비중 입니다.");
+  readyAlert() {
+      alert('준비중 입니다.');
   }
 
-  removeItemAt(i){
+  removeItemAt(i) {
     this.cartService.removeItemAt(i);
   }
 
-  calculateTotalPrice(){
+  calculateTotalPrice() {
     this.totalPrice = 0;
-    for(let item of this.items){
-      if (item["checked"])
+    for (const item of this.items) {
+      if (item['checked']) {
         this.totalPrice += item['price'] * item['count'];
+      }
     }
-    if(this.totalPrice > 30000) this.progressBarMax = this.totalPrice;
-    else this.progressBarMax = 30000;
+    if (this.totalPrice > 30000) {
+      this.progressBarMax = this.totalPrice;
+    }
+    else {
+      this.progressBarMax = 30000;
+    }
   }
 
   isAllChecked() {
-    return _.every(this.items, (i) => i["checked"]);
+    return _.every(this.items, (i) => i['checked']);
   }
 
   checkAll(checked) {
-    for(let item of this.items) {
-      item["checked"] = checked;
+    for (const item of this.items) {
+      item['checked'] = checked;
     }
   }
 
   removeSelected() {
     let checkedIdx = [];
     this.items.forEach((item, idx) => {
-      if (item["checked"]) checkedIdx.push(idx);
+      if (item['checked']) {
+        checkedIdx.push(idx);
+      }
     });
     checkedIdx = _.reverse(checkedIdx);
-    for (let idx of checkedIdx) {
+    for (const idx of checkedIdx) {
       this.cartService.removeItemAt(idx);
     }
   }
-  
 }
