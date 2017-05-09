@@ -8,6 +8,7 @@ export class Item{
   public img:string;
   public price:number;
   public count:number;
+  public checked:boolean;
 
   constructor(id, name, img, price){
     this.id = id;
@@ -15,9 +16,11 @@ export class Item{
     this.img = img;
     this.price = price;
     this.count = 1;
+    this.checked = true;
   }
 
   totalPrice() {
+    if (!this.checked) return 0;
     return this.price * this.count;
   }
 
@@ -56,6 +59,12 @@ export class CartService {
       else {
         items = [...this.items.getValue(), item];
       }
+      this.items.next(items);
+    }
+
+    removeItemById(id) {
+      let items = this.items.getValue();
+      items = _.remove(items, (i) => i.id === id);
       this.items.next(items);
     }
 
