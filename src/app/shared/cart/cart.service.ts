@@ -20,6 +20,23 @@ export class Item{
     return this.price * this.count;
   }
 
+  normalizeCount(count) {
+    if (count < 1) return 1;
+    if (99 < count) return 99;
+    return Math.floor(count);
+  }
+
+  setCount(count) {
+    this.count = this.normalizeCount(count);
+  }
+
+  addCount() {
+    this.count = this.normalizeCount(this.count + 1);
+  }
+
+  subCount() {
+    this.count = this.normalizeCount(this.count - 1);
+  }
 
 }
 

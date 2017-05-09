@@ -7,10 +7,10 @@
         <div>
           <span>{{item.price | currency:'KRW':true}}</span>
           <div class="pull-right input-group item-count">
-            <input type="number" class="form-control" min=1 max=99 value={{item.count}} [(ngModel)]="item.count" (change)="itemCountChanged($event)"/>
+            <input type="number" class="form-control" min=1 max=99 value={{item.count}} [(ngModel)]="item.count" (change)="item.setCount($event.target.value)"/>
             <div class="input-group-btn">
-              <button type="button" class="btn btn-default" (click)="item.count = normalizeCount(item.count + 1)">+</button>
-              <button type="button" class="btn btn-default" (click)="item.count = normalizeCount(item.count - 1)">-</button>
+              <button type="button" class="btn btn-default" (click)="item.addCount()">+</button>
+              <button type="button" class="btn btn-default" (click)="item.subCount()">-</button>
             </div>
           </div>
         </div>
