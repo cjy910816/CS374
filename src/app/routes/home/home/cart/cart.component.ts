@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from "../../../../shared/cart/cart.service";
-
+import * as _ from "lodash";
 
 @Component({
     selector: 'app-cart',
@@ -51,10 +51,32 @@ export class CartComponent implements OnInit {
   calculateTotalPrice(){
     this.totalPrice = 0;
     for(let item of this.items){
-      this.totalPrice += item['price'] * item['count'];
+      if (item["checked"])
+        this.totalPrice += item['price'] * item['count'];
     }
     if(this.totalPrice > 30000) this.progressBarMax = this.totalPrice;
     else this.progressBarMax = 30000;
   }
 
+  isAllChecked() {
+    return _.every(this.items, (i) => i["checked"]);
+  }
+
+  checkAll(checked) {
+    for(let item of this.items) {
+      item["checked"] = checked;
+    }
+  }
+
+  removeSelected() {
+    let checkedIdx = [];
+    this.items.forEach((item, idx) => {
+      if (item["checked"]) checkedIdx.push(idx);
+    });
+    checkedIdx = _.reverse(checkedIdx);
+    for (let idx of checkedIdx) {
+      this.cartService.removeItemAt(idx);
+    }
+  }
+  
 }
