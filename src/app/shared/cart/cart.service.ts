@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
+import * as _ from "lodash";
 
 export class Item{
   public id:number;
@@ -25,7 +26,6 @@ export class Item{
     if (99 < count) return 99;
     return Math.floor(count);
   }
-
   setCount(count) {
     this.count = this.normalizeCount(count);
   }
@@ -48,7 +48,14 @@ export class CartService {
     constructor() { }
 
     addItem(item){
-      let items = [...this.items.getValue(), item];
+      let items = this.items.getValue();
+      let itemInCart = _.find(items, (i) => i.id === item.id);
+      if (itemInCart) {
+        itemInCart.count += 1;
+      }
+      else {
+        items = [...this.items.getValue(), item];
+      }
       this.items.next(items);
     }
 
