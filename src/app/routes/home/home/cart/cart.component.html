@@ -44,11 +44,17 @@
         <img src="{{item.img}}">
         <div class="caption">
           <h6>{{item.name}}</h6>
-          <div>{{item.price| currency:'KRW':true}}</div>
+          <div>
+              <span>{{item.price | currency:'KRW':true}}</span>
+            <div class="pull-right input-group item-count">
+              <input type="number" class="form-control" min=1 max=99 value={{item.count}} [(ngModel)]="item.count" (change)="item.setCount($event.target.value);calculateTotalPrice();"/>
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default" (click)="item.addCount();calculateTotalPrice();">+</button>
+                <button type="button" class="btn btn-default" (click)="item.subCount();calculateTotalPrice();">-</button>
+              </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-
 </div>
