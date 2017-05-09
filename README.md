@@ -29,7 +29,7 @@ Codes are under ./src
 
 ## 멀티 아이템 - 재학
 - [ ] 동시 여러 아이템 삭제
-- [ ] aggregation
+- [x] aggregation
 - [x] 장바구니에 넣을 때 아이템 갯수 설정
 - [x] 카트 내에 아이템 갯수 설정
 
