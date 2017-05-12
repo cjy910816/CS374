@@ -34,24 +34,24 @@
       </div>
 	  <div id="price-graph" class="progress">
         <div *ngFor="let item of items; let i = index" [attr.data-index]="i" class="progress-bar"
-		  [style.width]="(item['price']/progressBarMax*100) + '%'">
+		  [style.width]="(item.totalPrice()/progressBarMax*100) + '%'">
 		  <div *ngIf="progressBarMax == 30000" [ngClass]="progressBarClasses[i%2]">
-            {{item['price']| currency:'KRW':true}}
+            {{item.totalPrice() | currency:'KRW':true}}
           </div>
 		  <div *ngIf="progressBarMax == 50000" [ngClass]="progressBarClasses[i%2 + 2]">
-            {{item['price']| currency:'KRW':true}}
+            {{item.totalPrice() | currency:'KRW':true}}
           </div>
 		  <div *ngIf="progressBarMax == 100000" [ngClass]="progressBarClasses[i%2 + 4]">
-            {{item['price']| currency:'KRW':true}}
+            {{item.totalPrice() | currency:'KRW':true}}
           </div>
 		  <div *ngIf="progressBarMax == 200000" [ngClass]="progressBarClasses[i%2 + 6]">
-            {{item['price']| currency:'KRW':true}}
+            {{item.totalPrice() | currency:'KRW':true}}
           </div>
 		  <div *ngIf="progressBarMax == 500000" [ngClass]="progressBarClasses[i%2 + 8]">
-            {{item['price']| currency:'KRW':true}}
+            {{item.totalPrice() | currency:'KRW':true}}
           </div>
 		  <div *ngIf="progressBarMax == 1000000" [ngClass]="progressBarClasses[i%2 + 10]">
-            {{item['price']| currency:'KRW':true}}
+            {{item.totalPrice() | currency:'KRW':true}}
           </div>
         </div>
       </div>
