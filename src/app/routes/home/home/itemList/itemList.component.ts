@@ -1,16 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import Any = jasmine.Any;
 import {CartService, Item} from "../../../../shared/cart/cart.service";
+
 import * as _ from "lodash";
 
 
 @Component({
   selector: 'app-item-list',
   templateUrl: 'itemList.component.html',
-  styleUrls: ['itemList.component.scss']
+  styleUrls: ['itemList.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class ItemListComponent implements OnInit {
   private items: Item[] = [];
+  private sort='name';
 
   constructor(public cartService: CartService) {
     this.items.push(new Item(1, "센카 퍼펙트 휍 N 클렌징 폼, 120g 2개", "./image/perfect_whip.jpg", 11300));
@@ -55,6 +58,10 @@ export class ItemListComponent implements OnInit {
   itemCountChanged(event) {
     event.target.value = this.normalizeCount(event.target.value);
   }
-  
-
+  priceOrder(){
+    this.sort ='price';
+  }
+  nameOrder(){
+    this.sort ='name';
+  }
 }

@@ -12,7 +12,7 @@ import { SharedModule } from '../../../shared/shared.module';
   providers: [
   ],
   declarations: [
-    ItemListComponent
+    ItemListComponent,
   ],
   exports: [
     ItemListComponent

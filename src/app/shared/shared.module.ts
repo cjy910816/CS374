@@ -32,6 +32,7 @@ import { ScrollableDirective } from './directives/scrollable/scrollable.directiv
 import { JqcloudDirective } from './directives/jqcloud/jqcloud.directive';
 
 import { CartService } from './cart/cart.service';
+import { OrderBy } from './orderBy';
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -69,7 +70,8 @@ import { CartService } from './cart/cart.service';
         VectormapDirective,
         NowDirective,
         ScrollableDirective,
-        JqcloudDirective
+        JqcloudDirective,
+        OrderBy
     ],
     exports: [
         CommonModule,

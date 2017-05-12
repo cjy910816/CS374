@@ -4,6 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { CartModule } from './home/cart.module';
 import { ItemListModule } from './home/itemList.module';
 
+import { OrderBy } from './orderBy'
+
+
 const routes: Routes = [
     { path: '', component: HomeComponent },
 ];
@@ -14,7 +17,10 @@ const routes: Routes = [
       CartModule,
       ItemListModule
     ],
-    declarations: [HomeComponent],
+    declarations: [
+      HomeComponent,
+      OrderBy
+    ],
     exports: [
         RouterModule
     ]

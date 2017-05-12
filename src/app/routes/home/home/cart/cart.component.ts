@@ -85,4 +85,10 @@ export class CartComponent implements OnInit {
       this.cartService.removeItemAt(idx);
     }
   }
+  priceOrder(){
+    console.log("cart_price_order");
+  }
+  nameOrder(){
+    console.log("cart_name_order");
+  }
 }

@@ -36,6 +36,10 @@
     </div>
   </div>
   <div>
+    <button type="button" class="btn btn-default" (click)="priceOrder()">가격순 정렬</button>
+    <button type="button" class="btn btn-default" (click)="nameOrder()">이름순 정렬 </button>
+  </div>
+  <div>
     <input type="checkbox" name="select" id="" [checked]="isAllChecked()" (change)="checkAll($event.target.checked);calculateTotalPrice();"/> 전체 선택
     <button type="button" class="btn btn-default" (click)="removeSelected();">선택 삭제</button>
   </div>

@@ -1,5 +1,9 @@
+<div>
+  <button type="button" class="btn btn-default" (click)="priceOrder()">가격순 정렬</button>
+  <button type="button" class="btn btn-default" (click)="nameOrder()">이름순 정렬 </button>
+</div>
 <div class="item-list-container clearfix" [style.height]="height+'px'">
-  <div *ngFor="let item of items" class="col-sm-3 col-md-2 item">
+  <div *ngFor="let item of items | orderBy : [ sort ]" class="col-sm-3 col-md-2 item">
     <div class="thumbnail">
       <img src="{{item.img}}">
       <div class="caption clearfix">

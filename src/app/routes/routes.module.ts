@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { menu } from './menu';
 import { routes } from './routes';
 
+
 @NgModule({
     imports: [
         SharedModule,
