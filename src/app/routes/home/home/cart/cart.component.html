@@ -44,7 +44,7 @@
     <button type="button" class="btn btn-default" (click)="removeSelected();">선택 삭제</button>
   </div>
   <div class="row items clearfix">
-    <div *ngFor="let item of items; let i = index" class="col-sm-2" [attr.data-index]="i">
+    <div *ngFor="let item of items | orderByPipe : [ sort ]; let i = index" class="col-sm-2" [attr.data-index]="i">
       <div class="thumbnail">
           <input type="checkbox" name="select" id=""
           [(ngModel)]="item.checked" [checked]="item.checked"

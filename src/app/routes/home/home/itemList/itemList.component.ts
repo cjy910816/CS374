@@ -64,4 +64,7 @@ export class ItemListComponent implements OnInit {
   nameOrder(){
     this.sort ='name';
   }
+  search(){
+    console.log("search");
+  }
 }

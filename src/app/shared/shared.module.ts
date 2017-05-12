@@ -32,7 +32,7 @@ import { ScrollableDirective } from './directives/scrollable/scrollable.directiv
 import { JqcloudDirective } from './directives/jqcloud/jqcloud.directive';
 
 import { CartService } from './cart/cart.service';
-import { OrderBy } from './orderBy';
+import { OrderByPipe } from './pipes/orderBy'
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -60,7 +60,7 @@ import { OrderBy } from './orderBy';
     ],
     providers: [
         ColorsService,
-      CartService
+        CartService
     ],
     declarations: [
         FlotDirective,
@@ -71,7 +71,7 @@ import { OrderBy } from './orderBy';
         NowDirective,
         ScrollableDirective,
         JqcloudDirective,
-        OrderBy
+        OrderByPipe
     ],
     exports: [
         CommonModule,
@@ -102,7 +102,8 @@ import { OrderBy } from './orderBy';
         VectormapDirective,
         NowDirective,
         ScrollableDirective,
-        JqcloudDirective
+        JqcloudDirective,
+        OrderByPipe
     ]
 })
 

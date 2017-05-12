@@ -16,6 +16,7 @@ export class CartComponent implements OnInit {
     'progress-bar-success progress-bar-striped',
     'progress-bar-complete progress-bar-striped'
   ];
+  private sort = 'name';
 
   public isFold = true;
 
@@ -86,9 +87,9 @@ export class CartComponent implements OnInit {
     }
   }
   priceOrder(){
-    console.log("cart_price_order");
+    this.sort='price'
   }
   nameOrder(){
-    console.log("cart_name_order");
+    this.sort='name'
   }
 }
