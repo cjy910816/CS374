@@ -16,6 +16,8 @@ export class CartComponent implements OnInit {
     'progress-bar-success progress-bar-striped',
     'progress-bar-complete progress-bar-striped'
   ];
+  private sort = 'name';
+  private userFilter : any = { name : ''};
 
   public isFold = true;
 
@@ -84,5 +86,11 @@ export class CartComponent implements OnInit {
     for (const idx of checkedIdx) {
       this.cartService.removeItemAt(idx);
     }
+  }
+  priceOrder(){
+    this.sort='price'
+  }
+  nameOrder(){
+    this.sort='name'
   }
 }

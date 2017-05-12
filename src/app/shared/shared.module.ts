@@ -20,6 +20,7 @@ import { TimepickerModule } from 'ng2-bootstrap/timepicker';
 import { TooltipModule } from 'ng2-bootstrap/tooltip';
 import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import { DatepickerModule } from 'ng2-bootstrap/datepicker';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 import { FlotDirective } from './directives/flot/flot.directive';
 import { SparklineDirective } from './directives/sparkline/sparkline.directive';
@@ -32,6 +33,7 @@ import { ScrollableDirective } from './directives/scrollable/scrollable.directiv
 import { JqcloudDirective } from './directives/jqcloud/jqcloud.directive';
 
 import { CartService } from './cart/cart.service';
+import { OrderByPipe } from './pipes/orderBy'
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -55,11 +57,12 @@ import { CartService } from './cart/cart.service';
         TimepickerModule.forRoot(),
         TooltipModule.forRoot(),
         TypeaheadModule.forRoot(),
-        ToasterModule
+        ToasterModule,
+        Ng2FilterPipeModule
     ],
     providers: [
         ColorsService,
-      CartService
+        CartService
     ],
     declarations: [
         FlotDirective,
@@ -69,7 +72,8 @@ import { CartService } from './cart/cart.service';
         VectormapDirective,
         NowDirective,
         ScrollableDirective,
-        JqcloudDirective
+        JqcloudDirective,
+        OrderByPipe
     ],
     exports: [
         CommonModule,
@@ -100,7 +104,9 @@ import { CartService } from './cart/cart.service';
         VectormapDirective,
         NowDirective,
         ScrollableDirective,
-        JqcloudDirective
+        JqcloudDirective,
+        OrderByPipe,
+        Ng2FilterPipeModule
     ]
 })
 
