@@ -12,13 +12,11 @@ const routes: Routes = [
     imports: [
       RouterModule.forChild(routes),
       CartModule,
-      ItemListModule,
+      ItemListModule
     ],
-    declarations: [
-      HomeComponent,
-    ],
+    declarations: [HomeComponent],
     exports: [
-        RouterModule,
+        RouterModule
     ]
 })
 export class HomeModule { }
