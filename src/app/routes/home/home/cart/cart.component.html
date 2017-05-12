@@ -31,20 +31,20 @@
       <div *ngIf="totalPrice < 30000" class="text-danger">(배송비 별도)</div>
       <div *ngIf="totalPrice >= 30000" class="text-primary">(무료 배송)</div>
     </div>
-    <div class="buttons pull-left">
-      <button type="button" class="btn btn-default" (click)="readyAlert()">주문하기</button>
+    <div>
+      <button type="button" class="btn pull-right btn-primary" (click)="readyAlert()">주문하기</button>
     </div>
-  </div>
-  <div>
-    <button type="button" class="btn btn-default" (click)="priceOrder()">가격순 정렬</button>
-    <button type="button" class="btn btn-default" (click)="nameOrder()">이름순 정렬 </button>
   </div>
   <div>
     <input type="checkbox" name="select" id="" [checked]="isAllChecked()" (change)="checkAll($event.target.checked);calculateTotalPrice();"/> 전체 선택
     <button type="button" class="btn btn-default" (click)="removeSelected();">선택 삭제</button>
+    <button type="button" class="btn pull-right btn-default" (click)="nameOrder()">이름순 정렬 </button>
+    <button type="button" class="btn pull-right btn-default" (click)="priceOrder()">가격순 정렬</button>
+    <input type="text" class="pull-right"  [(ngModel)]="userFilter.name" placeholder="Search to type">
+
   </div>
   <div class="row items clearfix">
-    <div *ngFor="let item of items | orderByPipe : [ sort ]; let i = index" class="col-sm-2" [attr.data-index]="i">
+    <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter; let i = index" class="col-sm-2" [attr.data-index]="i">
       <div class="thumbnail">
           <input type="checkbox" name="select" id=""
           [(ngModel)]="item.checked" [checked]="item.checked"

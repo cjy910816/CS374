@@ -17,6 +17,7 @@ export class CartComponent implements OnInit {
     'progress-bar-complete progress-bar-striped'
   ];
   private sort = 'name';
+  private userFilter : any = { name : ''};
 
   public isFold = true;
 

@@ -1,15 +1,11 @@
 <div class="button-list-container">
   <button type="button" class="col-sm-2 col-md-2 btn btn-default" (click)="priceOrder()">가격순 정렬</button>
   <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="nameOrder()">이름순 정렬 </button>
-  <div class="col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">
-    <form class="form-inline">
-      <input type="text" class="form-control">
-      <button type="submit" class="btn btn-primary" (clcik)="search()">검색</button>
-    </form>
-  </div>
+  <input type="text" class="col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4"
+    [(ngModel)]="userFilter.name" placeholder="Search to type">
 </div>
 <div class="item-list-container clearfix" [style.height]="height+'px'">
-  <div *ngFor="let item of items | orderByPipe : [ sort ]" class="col-sm-3 col-md-2 item">
+  <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter" class="col-sm-3 col-md-2 item">
     <div class="thumbnail">
       <img src="{{item.img}}">
       <div class="caption clearfix">

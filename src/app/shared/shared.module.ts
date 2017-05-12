@@ -20,6 +20,7 @@ import { TimepickerModule } from 'ng2-bootstrap/timepicker';
 import { TooltipModule } from 'ng2-bootstrap/tooltip';
 import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import { DatepickerModule } from 'ng2-bootstrap/datepicker';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 import { FlotDirective } from './directives/flot/flot.directive';
 import { SparklineDirective } from './directives/sparkline/sparkline.directive';
@@ -56,7 +57,8 @@ import { OrderByPipe } from './pipes/orderBy'
         TimepickerModule.forRoot(),
         TooltipModule.forRoot(),
         TypeaheadModule.forRoot(),
-        ToasterModule
+        ToasterModule,
+        Ng2FilterPipeModule
     ],
     providers: [
         ColorsService,
@@ -103,7 +105,8 @@ import { OrderByPipe } from './pipes/orderBy'
         NowDirective,
         ScrollableDirective,
         JqcloudDirective,
-        OrderByPipe
+        OrderByPipe,
+        Ng2FilterPipeModule
     ]
 })
 

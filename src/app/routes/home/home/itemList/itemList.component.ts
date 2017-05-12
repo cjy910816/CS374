@@ -14,6 +14,7 @@ import * as _ from "lodash";
 export class ItemListComponent implements OnInit {
   private items: Item[] = [];
   private sort='name';
+  private userFilter : any = { name : ''};
 
   constructor(public cartService: CartService) {
     this.items.push(new Item(1, "센카 퍼펙트 휍 N 클렌징 폼, 120g 2개", "./image/perfect_whip.jpg", 11300));
@@ -63,8 +64,5 @@ export class ItemListComponent implements OnInit {
   }
   nameOrder(){
     this.sort ='name';
-  }
-  search(){
-    console.log("search");
   }
 }
