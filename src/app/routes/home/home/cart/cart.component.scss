@@ -24,10 +24,80 @@
   .status-bar{
     margin: 0;
     padding: 10px;
+	  height: 80px;
+  }
+  
+  .progress-bar-purple-1{
+    background-color: #AA00AA !important;
+  }
+  .progress-bar-purple-2{
+    background-color: #FF22FF !important;
+  }
+  .progress-bar-blue-1{
+    background-color: #0000CC !important;
+  }
+  .progress-bar-blue-2{
+    background-color: #4444FF !important;
+  }
+  .progress-bar-green-1{
+    background-color: #009900 !important;
+  }
+  .progress-bar-green-2{
+    background-color: #00CC00 !important;
+  }
+  .progress-bar-yellow-1{
+    background-color: #888800 !important;
+  }
+  .progress-bar-yellow-2{
+    background-color: #AAAA00 !important;
+  }
+  .progress-bar-orange-1{
+    background-color: #CC6600 !important;
+  }
+  .progress-bar-orange-2{
+    background-color: #FFAA00 !important;
+  }
+  .progress-bar-red-1{
+    background-color: #AA0000 !important;
+  }
+  .progress-bar-red-2{
+    background-color: #FF2222 !important;
   }
 
   .progressbar-section{
     position: relative;
+	
+	& > #scale-graph{
+	  position: absolute;
+      top: 0;
+      width: 95%;
+      background: transparent;
+      overflow: visible;
+	  
+	  & > #scale-progress-bar{
+	    background-color: rgba(128, 128, 128, 0.2) !important;
+	  }
+	  
+	  .scale{
+	    position: relative;
+	    width: 120px;
+	    height: 50px;
+	    left: 60px;
+	    top: 16px;
+	    float: right;
+	  
+	    .scale-image{
+	      position: relative;
+	      width: 12px;
+	      height: 12px;
+	    }
+	  
+	    .scale-number{
+	      color: #222222
+	    }
+	  }
+	}
+	
     & > #freeship-graph{
       position: absolute;
       top: 0;
@@ -36,17 +106,35 @@
       overflow: visible;
 
       & > #freeship-progress-bar{
-        opacity: 0.4;
+	    background-color: rgba(255, 255, 255, 0.0) !important;
       }
-
-      &:after{
-        position: absolute;
-        margin-top: -20px;
-        content: url("/image/delivery_free.png");
-      }
+	  
+	  .freeship{
+	    position: relative;
+	    width: 120px;
+	    height: 50px;
+		top: -36px;
+	    left: 60px;
+	    float: right;
+		
+		.freeship-image{
+	      position: relative;
+	      width: 44px;
+	      height: 36px;
+	    }
+	  }
+    }
+	
+  }
+  
+  .price-section{
+    position: relative;
+    left: 16px;
+  
+    .price-value{
+      font-size: 20px;
     }
   }
-
   .items{
     height: 390px;
     overflow-y: scroll;;
