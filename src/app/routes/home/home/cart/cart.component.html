@@ -2,11 +2,11 @@
   <div class="header clearfix">
     나의 장바구니
     <span *ngIf="isFold">
-      <button type="button" class="btn btn-transparent pull-right" (click)="unfold()"><em class="icon-arrow-down"></em> </button>
+      <button type="button" class="btn btn-transparent pull-right" (click)="unfold()"><em class="icon-arrow-up"></em> </button>
     </span>
     <span *ngIf="!isFold">
       <button type="button" class="btn btn-transparent pull-right" (click)="fold()"><em
-        class="icon-arrow-up"></em> </button>
+        class="icon-arrow-down"></em> </button>
     </span>
   </div>
   <div class="status-bar row">
