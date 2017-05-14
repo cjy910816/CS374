@@ -14,25 +14,55 @@
       주문금액
     </div>
     <div class="progressbar-section col-sm-8 pull-left">
-      <div id="price-graph" class="progress">
-        <div *ngFor="let item of items; let i = index" [attr.data-index]="i"
-             class="progress-bar" [ngClass]="progressBarClasses[i%2]"
-             [style.width]="(item.totalPrice()/progressBarMax*100) + '%'" >
-          {{ item.totalPrice() | currency:'KRW':true}}
+      <div id="scale-graph" class="progress">
+        <div id="scale-progress-bar" class="progress-bar" role="progressbar"
+          *ngFor="let scale of scaleNumbers; let i = index" [attr.data-index]="i"
+	        [style.width]="100.0/scaleNumbers.length + '%'">
+		      <div class="scale">
+		        <img class="scale-image" src="/image/scale_arrow.png">
+			      <br><div class="scale-number">{{scale| currency:'KRW':true}}</div>
+		      </div>
+	      </div>
+      </div>
+	    <div id="freeship-graph" class="progress">
+        <div id="freeship-progress-bar" class="progress-bar" role="progressbar"
+	      [style.width]="30000/progressBarMax * 100 + '%'">
+		  <div class="freeship">
+		    <img class="freeship-image" src="/image/delivery_free.png">
+		  </div>
+	    </div>
+      </div>
+	  <div id="price-graph" class="progress">
+        <div *ngFor="let item of items; let i = index" [attr.data-index]="i" class="progress-bar"
+		  [style.width]="(item.totalPrice()/progressBarMax*100) + '%'">
+		  <div *ngIf="progressBarMax == 30000" [ngClass]="progressBarClasses[i%2]">
+            {{item.totalPrice() | currency:'KRW':true}}
+          </div>
+		  <div *ngIf="progressBarMax == 50000" [ngClass]="progressBarClasses[i%2 + 2]">
+            {{item.totalPrice() | currency:'KRW':true}}
+          </div>
+		  <div *ngIf="progressBarMax == 100000" [ngClass]="progressBarClasses[i%2 + 4]">
+            {{item.totalPrice() | currency:'KRW':true}}
+          </div>
+		  <div *ngIf="progressBarMax == 200000" [ngClass]="progressBarClasses[i%2 + 6]">
+            {{item.totalPrice() | currency:'KRW':true}}
+          </div>
+		  <div *ngIf="progressBarMax == 500000" [ngClass]="progressBarClasses[i%2 + 8]">
+            {{item.totalPrice() | currency:'KRW':true}}
+          </div>
+		  <div *ngIf="progressBarMax == 1000000" [ngClass]="progressBarClasses[i%2 + 10]">
+            {{item.totalPrice() | currency:'KRW':true}}
+          </div>
         </div>
       </div>
-      <div id="freeship-graph" class="progress">
-        <div id="freeship-progress-bar" class="progress-bar" role="progressbar"
-             [style.width]="(30000/progressBarMax*100) + '%'" ></div>
-      </div>
     </div>
-    <div id="price-section" class="col-sm-offset-1 pull-left">
-      <div>Total {{totalPrice| currency:'KRW':true}}</div>
+    <div class="price-section pull-left">
+      <div class="price-value">Total {{totalPrice| currency:'KRW':true}}</div>
       <div *ngIf="totalPrice < 30000" class="text-danger">(배송비 별도)</div>
       <div *ngIf="totalPrice >= 30000" class="text-primary">(무료 배송)</div>
     </div>
-    <div>
-      <button type="button" class="btn pull-right btn-primary" (click)="readyAlert()">주문하기</button>
+    <div class="buttons pull-right">
+    <button type="button" class="btn btn-default" (click)="readyAlert()">주문하기</button>
     </div>
   </div>
   <div>
