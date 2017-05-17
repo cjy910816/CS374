@@ -1,8 +1,9 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ViewChild} from '@angular/core';
 import Any = jasmine.Any;
 import {CartService, Item} from "../../../../shared/cart/cart.service";
 
 import * as _ from "lodash";
+import {ModalDirective} from "ng2-bootstrap";
 
 
 @Component({
@@ -15,6 +16,8 @@ export class ItemListComponent implements OnInit {
   private items: Item[] = [];
   private sort='name';
   private userFilter : any = { name : ''};
+  @ViewChild('detailModal') public detailModal:ModalDirective;
+  private selectedItem;
 
   constructor(public cartService: CartService) {
     this.items.push(new Item(1, "센카 퍼펙트 휍 N 클렌징 폼, 120g 2개", "./image/perfect_whip.jpg", 11300));
@@ -37,6 +40,7 @@ export class ItemListComponent implements OnInit {
     this.items.push(new Item(18, "다우니 아로마 플로럴 섬유유연제, 8.5L, 1개", "./image/dawni.jpg", 13900));
     this.items.push(new Item(19, "코코도르 디퓨져 200ml 2개, 에이프릴 프레쉬", "./image/difuser.jpg", 9400));
     this.items.push(new Item(20, "스마트케어 덴탈크리닉 2080 치약, 190g, 10개", "./image/smart_care.jpg", 9400));
+    this.selectedItem = this.items[0];
   }
 
   ngOnInit() {
@@ -64,5 +68,10 @@ export class ItemListComponent implements OnInit {
   }
   nameOrder(){
     this.sort ='name';
+  }
+
+  showDetail(item){
+    this.selectedItem = item;
+    this.detailModal.show();
   }
 }
