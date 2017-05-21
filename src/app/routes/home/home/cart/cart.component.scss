@@ -70,7 +70,7 @@
 	& > #scale-graph{
 	  position: absolute;
       top: 0;
-      width: 95%;
+      width: 90%;
       background: transparent;
       overflow: visible;
 	  
@@ -101,7 +101,7 @@
     & > #freeship-graph{
       position: absolute;
       top: 0;
-      width: 95%;
+      width: 90%;
       background: transparent;
       overflow: visible;
 
@@ -125,6 +125,14 @@
 	  }
     }
 	
+	& > #price-graph{
+	  position: absolute;
+      top: 0;
+      width: 90%;
+      background: transparent;
+      overflow: visible;
+	}
+	
   }
   
   .price-section{
@@ -138,6 +146,51 @@
   .items{
     height: 390px;
     overflow-y: scroll;;
+  }
+  
+  .thumbnail-cart{
+    background-color: #EEEEEE;
+    border: 3px solid #999999;
+  }
+
+  .thumbnail-cart-checked{
+    background-color: #CCCCFF;
+    border: 3px solid #000066;
+  }
+  
+  .item-checkbox{
+    font-size: ($font-size-base * 1.2);
+  }
+  
+  .item-buttons{
+    float: right;
+  
+    .item-include{
+      background: none;
+      border: none;
+  
+    .included-state{
+      font-size: ($font-size-base * 1.2);
+      font-weight: $close-font-weight;
+      color: #AAAAAA
+    }
+	
+    .excluded-state{
+      font-size: ($font-size-base * 1.2);
+      font-weight: $close-font-weight;
+      color: #CC0000
+    }	
+
+    }
+  
+    .remove-button{
+      background: none;
+      border: none;
+      font-size: ($font-size-base * 1.2);
+      font-weight: $close-font-weight;
+      color: #333333
+    }
+  
   }
 
   .thumbnail {
