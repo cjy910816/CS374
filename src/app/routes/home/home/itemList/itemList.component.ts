@@ -77,7 +77,7 @@ export class ItemListComponent implements OnInit {
     this.selectedItem = item;
     this.detailModal.show();
   }
-  
+
   typeOrder(event){
     if(this.categorizer===event.target.id){
       this.categorizer = event.target.id

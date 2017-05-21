@@ -1,7 +1,11 @@
-# CS374
-CS374
+# CS374 - prototype
 
-Codes are under ./src
+Source codes are under ./src <br>
+Main components are under
+  ./src/app/routes/home
+  ./src/app/shared
+
+Belows are setting guide
 
 ## Setup
   npm install
@@ -9,9 +13,9 @@ Codes are under ./src
 ## Run dev
   npm run start
 
-## TODO
-# TODO
-#KAIST/CS374
+## TODOs 
+  We categorized our features by functionality.
+  And distributed each job(todo) by category.
 
 ## 그냥 큰거 - 나중에
 - [ ] 모바일 지원
@@ -45,9 +49,6 @@ Codes are under ./src
 ## 추가 - 나중에
 - [ ] 무료 배송 시각화 개선 (아이콘 활용)
 - [ ] 상품 카테고리
-
-
-# NEW TODO
 
 ## 품종 - 공통 <- 승환
 - [ ] 품종 (물, 세안제, 세제, 구강용품, 휴지/물티슈, 마스크)
