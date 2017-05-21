@@ -7,20 +7,24 @@ export class Item {
   public name:string;
   public img:string;
   public price:number;
+  public category:string;
   public count:number;
   public checked:boolean;
+  public included:boolean;
 
-  constructor(id, name, img, price) {
+  constructor(id, name, img, price, category) {
     this.id = id;
     this.name = name;
     this.img = img;
     this.price = price;
+	this.category = category;
     this.count = 1;
     this.checked = true;
+	this.included = true;
   }
 
   totalPrice() {
-    if (!this.checked) {
+    if (!this.included) {
       return 0;
     }
     return this.price * this.count;
@@ -67,6 +71,23 @@ export class CartService {
       }
       this.items.next(items);
     }
+	
+    selectItemAt(index) {
+      let items = this.items.getValue();
+      items[index]["checked"] = true;
+    }
+		
+    includeItemAt(index) {
+      let items = this.items.getValue();
+      items[index]["included"] = true;
+      this.items.next(items);
+    }
+	
+    excludeItemAt(index) {
+      let items = this.items.getValue();
+      items[index]["included"] = false;
+      this.items.next(items);
+    }
 
     removeItemById(id) {
       let items = this.items.getValue();
@@ -77,8 +98,8 @@ export class CartService {
     removeItemAt(index) {
       let items = this.items.getValue();
       items.splice(index, 1);
-      this.items.next(items);
     }
+
 
     getItems() {
       return this.items.asObservable();

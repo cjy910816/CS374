@@ -66,7 +66,7 @@
     </div>
   </div>
   <div>
-    <input type="checkbox" name="select" id="" [checked]="isAllChecked()" (change)="checkAll($event.target.checked);calculateTotalPrice();"/> 전체 선택
+    <input type="checkbox" name="select" id="" [checked]="isAllChecked()" (change)="checkAll($event.target.checked);highlightSelectedThumbnails();calculateTotalPrice();"/> 전체 선택
     <button type="button" class="btn btn-default" (click)="removeSelected();">선택 삭제</button>
     <button type="button" class="btn pull-right btn-default" (click)="nameOrder()">이름순 정렬 </button>
     <button type="button" class="btn pull-right btn-default" (click)="priceOrder()">가격순 정렬</button>
@@ -81,15 +81,19 @@
   </div>
   <div class="row items clearfix">
     <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter; let i = index" class="col-sm-2" [attr.data-index]="i">
-      <div class="thumbnail">
-          <input type="checkbox" name="select" id=""
-          [(ngModel)]="item.checked" [checked]="item.checked"
-          (ngModelChange)="calculateTotalPrice();"/>
-          <span class="close" (click)="removeItemAt(i)">
-            <em class="fa fa-times"></em>
+      <div class="thumbnail thumbnail-cart" (click)="selectItemAt(i)">
+          <span class="item-buttons">
+            <button class="item-include">
+              <em *ngIf="item.included" class="fa fa-ban included-state" (click)="excludeItemAt(i);calculateTotalPrice();"></em>
+              <em *ngIf="!item.included" class="fa fa-ban excluded-state" (click)="includeItemAt(i);calculateTotalPrice();"></em>
+            </button>  
+		    <button class="remove-button" (click)="removeItemAt(i);calculateTotalPrice();">
+              <em class="fa fa-trash"></em>
+            </button>
           </span>
         <img src="{{item.img}}">
         <div class="caption">
+          <h6>[{{item.category}}]</h6>
           <h6>{{item.name}}</h6>
           <div>
               <span>{{item.price | currency:'KRW':true}}</span>
