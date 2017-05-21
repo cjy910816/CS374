@@ -1,8 +1,18 @@
 <div class="button-list-container">
   <button type="button" class="col-sm-2 col-md-2 btn btn-default" (click)="priceOrder()">가격순 정렬</button>
   <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="nameOrder()">이름순 정렬 </button>
+
   <input type="text" class="col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4"
     [(ngModel)]="userFilter.name" placeholder="Search to type">
+</div>
+<div class="button-list-container">
+      <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="typeOrder($event)" id="water">water</button>
+      <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="typeOrder($event)" id="cleanser">cleanser</button>
+      <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="typeOrder($event)" id="detergent">detergent</button>
+      <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="typeOrder($event)" id="oralcare">oralcare</button>
+      <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="typeOrder($event)" id="tissue">tissue</button>
+      <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="typeOrder($event)" id="mask">mask</button>
+  <br>
 </div>
 <div class="item-list-container clearfix" [style.height]="height+'px'">
   <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter" class="col-sm-3 col-md-2 item">

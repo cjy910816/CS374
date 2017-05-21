@@ -27,9 +27,12 @@ export class CartComponent implements OnInit {
     "progress-bar-red-1",
     "progress-bar-red-2",
   ];
-  private sort = 'name';
-  private userFilter : any = { name : ''};
 
+  private sort = 'name';
+  private categorizer = '';
+  private userFilter : any = { name : '', img : this.categorizer};
+  private categoryBound =2;
+  //img should be category;
   public isFold = true;
 
     constructor(public cartService: CartService) {
@@ -40,6 +43,7 @@ export class CartComponent implements OnInit {
       this.cartService.getItems().subscribe((items) => {
         this.items = items;
         this.calculateTotalPrice();
+        this.checkOverSet();
       });
     }
 
@@ -56,7 +60,46 @@ export class CartComponent implements OnInit {
   readyAlert() {
       alert('준비중 입니다.');
   }
+  
+  selectItemAt(i) {
+    this.cartService.selectItemAt(i);
+    for (var itemIndex = 0; itemIndex < this.items.length; itemIndex++)
+    {
+      if(itemIndex == i)
+      {
+        this.items[itemIndex]["checked"] = true;
+	  }
+	  else
+	  {
+		  this.items[itemIndex]["checked"] = false;
+	  }
+    }
+	this.highlightSelectedThumbnails();
+  }
+  
+  highlightSelectedThumbnails() {
+	var thumbnailList = document.getElementsByClassName("thumbnail-cart");
+    for (var thumbnailIndex = 0; thumbnailIndex < thumbnailList.length; thumbnailIndex++)
+    {
+      if (this.items[thumbnailIndex]["checked"])
+      {
+        document.getElementsByClassName("thumbnail-cart")[thumbnailIndex].classList.add("thumbnail-cart-checked");
+      }
+      else
+      {
+        document.getElementsByClassName("thumbnail-cart")[thumbnailIndex].classList.remove("thumbnail-cart-checked");
+      }
+    }
+  }
+  
+  excludeItemAt(i) {
+    this.cartService.excludeItemAt(i);
+  }
 
+  includeItemAt(i) {
+    this.cartService.includeItemAt(i);
+  }
+  
   removeItemAt(i) {
     this.cartService.removeItemAt(i);
   }
@@ -64,7 +107,7 @@ export class CartComponent implements OnInit {
   calculateTotalPrice() {
     this.totalPrice = 0;
     for (const item of this.items) {
-      if (item['checked']) {
+      if (item['included']) {
         this.totalPrice += item['price'] * item['count'];
       }
     }
@@ -127,5 +170,32 @@ export class CartComponent implements OnInit {
   }
   nameOrder(){
     this.sort='name'
+  }
+  typeOrder(event){
+    if(this.categorizer===event.target.id){
+      this.categorizer = event.target.id
+    }
+    else{
+      this.categorizer=event.target.id;
+    }
+    console.log(event.target.id);
+  }
+  checkOverSet()
+  {
+    // let counters;
+    // for(category of categories){
+    //   for(item of this.items.){
+    //      if(category === item.category)
+    //      counters[category] += 1;
+    //   }
+    // }
+    // for(counter of counters)
+    // {
+    //   if(counter >= this.categoryBound)
+    //   {
+    //       //해당 클래스의 button class attribute 를 danger 혹은 warning 으로 바꿈
+    //   }
+    // }
+    console.log("checkOverSet");
   }
 }

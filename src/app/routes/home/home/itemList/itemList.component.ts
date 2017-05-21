@@ -15,6 +15,8 @@ import {ModalDirective} from "ng2-bootstrap";
 export class ItemListComponent implements OnInit {
   private items: Item[] = [];
   private sort='name';
+  private categorizer='';
+
   private userFilter : any = { name : ''};
   @ViewChild('detailModal') public detailModal:ModalDirective;
   private selectedItem;
@@ -69,9 +71,20 @@ export class ItemListComponent implements OnInit {
   nameOrder(){
     this.sort ='name';
   }
+<<<<<<< HEAD
 
   showDetail(item){
     this.selectedItem = item;
     this.detailModal.show();
+=======
+  typeOrder(event){
+    if(this.categorizer===event.target.id){
+      this.categorizer = event.target.id
+    }
+    else{
+      this.categorizer=event.target.id;
+    }
+    console.log(event.target.id);
+>>>>>>> be7d2b18b56dfbeaedfebb94e476a21e143ce3eb
   }
 }
