@@ -28,8 +28,10 @@ export class CartComponent implements OnInit {
     "progress-bar-red-2",
   ];
   private sort = 'name';
-  private userFilter : any = { name : ''};
-
+  private categorizer = '';
+  private userFilter : any = { name : '', img : this.categorizer};
+  private categoryBound =2;
+  //img should be category;
   public isFold = true;
 
     constructor(public cartService: CartService) {
@@ -40,6 +42,7 @@ export class CartComponent implements OnInit {
       this.cartService.getItems().subscribe((items) => {
         this.items = items;
         this.calculateTotalPrice();
+        this.checkOverSet();
       });
     }
 
@@ -127,5 +130,32 @@ export class CartComponent implements OnInit {
   }
   nameOrder(){
     this.sort='name'
+  }
+  typeOrder(event){
+    if(this.categorizer===event.target.id){
+      this.categorizer = event.target.id
+    }
+    else{
+      this.categorizer=event.target.id;
+    }
+    console.log(event.target.id);
+  }
+  checkOverSet()
+  {
+    // let counters;
+    // for(category of categories){
+    //   for(item of this.items.){
+    //      if(category === item.category)
+    //      counters[category] += 1;
+    //   }
+    // }
+    // for(counter of counters)
+    // {
+    //   if(counter >= this.categoryBound)
+    //   {
+    //       //해당 클래스의 button class attribute 를 danger 혹은 warning 으로 바꿈
+    //   }
+    // }
+    console.log("checkOverSet");
   }
 }
