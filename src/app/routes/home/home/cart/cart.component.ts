@@ -60,7 +60,7 @@ export class CartComponent implements OnInit {
   readyAlert() {
       alert('준비중 입니다.');
   }
-  
+
   selectItemAt(i) {
     this.cartService.selectItemAt(i);
     for (var itemIndex = 0; itemIndex < this.items.length; itemIndex++)
@@ -76,7 +76,7 @@ export class CartComponent implements OnInit {
     }
 	this.highlightSelectedThumbnails();
   }
-  
+
   highlightSelectedThumbnails() {
 	var thumbnailList = document.getElementsByClassName("thumbnail-cart");
     for (var thumbnailIndex = 0; thumbnailIndex < thumbnailList.length; thumbnailIndex++)
@@ -91,7 +91,7 @@ export class CartComponent implements OnInit {
       }
     }
   }
-  
+
   excludeItemAt(i) {
     this.cartService.excludeItemAt(i);
   }
@@ -99,7 +99,7 @@ export class CartComponent implements OnInit {
   includeItemAt(i) {
     this.cartService.includeItemAt(i);
   }
-  
+
   removeItemAt(i) {
     this.cartService.removeItemAt(i);
   }
@@ -173,10 +173,12 @@ export class CartComponent implements OnInit {
   }
   typeOrder(event){
     if(this.categorizer===event.target.id){
-      this.categorizer = event.target.id
+      this.categorizer = ''
+      this.userFilter = { name : '', category: this.categorizer };
     }
     else{
       this.categorizer=event.target.id;
+      this.userFilter = { name : '', category: this.categorizer };
     }
     console.log(event.target.id);
   }
