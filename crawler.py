@@ -10,7 +10,7 @@ categories = {
     "cleanser": "http://www.lottemart.com/category/categoryList.do?CategoryID=C001002400090002",
     "detergent": "http://www.lottemart.com/category/categoryList.do?CategoryID=C00100230001",
     "oralcare": "http://www.lottemart.com/category/categoryList.do?CategoryID=C00100230007",
-	"tissue": "http://www.lottemart.com/category/categoryList.do?CategoryID=C00100230005",
+    "tissue": "http://www.lottemart.com/category/categoryList.do?CategoryID=C00100230005",
     "mask": "http://www.lottemart.com/category/categoryList.do?CategoryID=C001002300080001"
 }
 
@@ -66,7 +66,7 @@ def loadRawItems():
             categoryID = match.group(1)
             detailUrl = detailUrlTemplate % locals()
             detailSoup = getSoup(detailUrl)
-            
+
             imgUrls = map(lambda x:x["src"], detailSoup.find_all("img"))
             item = Item(imgUrl, name, price, imgUrls, key)
             result.append(item)

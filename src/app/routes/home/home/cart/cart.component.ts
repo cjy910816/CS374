@@ -34,6 +34,7 @@ export class CartComponent implements OnInit {
   private categoryBound =2;
   //img should be category;
   public isFold = true;
+  private categories =  ['water', 'cleanser', 'detergent',  'oralcare', 'tissue', 'mask' ]
 
     constructor(public cartService: CartService) {
       this.totalPrice = 39450;
@@ -60,7 +61,7 @@ export class CartComponent implements OnInit {
   readyAlert() {
       alert('준비중 입니다.');
   }
-  
+
   selectItemAt(i) {
     this.cartService.selectItemAt(i);
     for (var itemIndex = 0; itemIndex < this.items.length; itemIndex++)
@@ -76,7 +77,7 @@ export class CartComponent implements OnInit {
     }
 	this.highlightSelectedThumbnails();
   }
-  
+
   highlightSelectedThumbnails() {
 	var thumbnailList = document.getElementsByClassName("thumbnail-cart");
     for (var thumbnailIndex = 0; thumbnailIndex < thumbnailList.length; thumbnailIndex++)
@@ -91,7 +92,7 @@ export class CartComponent implements OnInit {
       }
     }
   }
-  
+
   excludeItemAt(i) {
     this.cartService.excludeItemAt(i);
   }
@@ -99,7 +100,7 @@ export class CartComponent implements OnInit {
   includeItemAt(i) {
     this.cartService.includeItemAt(i);
   }
-  
+
   removeItemAt(i) {
     this.cartService.removeItemAt(i);
   }
@@ -173,29 +174,35 @@ export class CartComponent implements OnInit {
   }
   typeOrder(event){
     if(this.categorizer===event.target.id){
-      this.categorizer = event.target.id
+      this.categorizer = ''
+      this.userFilter = { name : '', category: this.categorizer };
     }
     else{
       this.categorizer=event.target.id;
+      this.userFilter = { name : '', category: this.categorizer };
     }
     console.log(event.target.id);
   }
   checkOverSet()
   {
-    // let counters;
-    // for(category of categories){
-    //   for(item of this.items.){
-    //      if(category === item.category)
-    //      counters[category] += 1;
-    //   }
-    // }
-    // for(counter of counters)
-    // {
-    //   if(counter >= this.categoryBound)
-    //   {
-    //       //해당 클래스의 button class attribute 를 danger 혹은 warning 으로 바꿈
-    //   }
-    // }
-    console.log("checkOverSet");
+    // let categories =  ['water', 'cleanser', 'detergent',  'oralcare', 'tissue', 'mask' ]
+    let counter={};
+    for(let catego of this.categories){
+      counter[catego]=0;
+    }
+    for(let item of this.items){
+      counter[item['category']] += item['count'];
+     }
+    for(let catego of this.categories)
+    {
+      if(counter[catego] >= this.categoryBound)
+      {
+        document.getElementById(catego).setAttribute("class", "col-sm-1 com-md-1 btn btn-danger")
+      }
+      else
+      {
+        document.getElementById(catego).setAttribute("class", "col-sm-1 com-md-1 btn btn-default")
+      }
+     }
   }
 }
