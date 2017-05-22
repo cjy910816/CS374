@@ -71,18 +71,18 @@ export class CartService {
       }
       this.items.next(items);
     }
-	
+
     selectItemAt(index) {
       let items = this.items.getValue();
       items[index]["checked"] = true;
     }
-		
+
     includeItemAt(index) {
       let items = this.items.getValue();
       items[index]["included"] = true;
       this.items.next(items);
     }
-	
+
     excludeItemAt(index) {
       let items = this.items.getValue();
       items[index]["included"] = false;
@@ -98,6 +98,7 @@ export class CartService {
     removeItemAt(index) {
       let items = this.items.getValue();
       items.splice(index, 1);
+      this.items.next(items);
     }
 
 

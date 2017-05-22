@@ -86,7 +86,7 @@
             <button class="item-include">
               <em *ngIf="item.included" class="fa fa-ban included-state" (click)="excludeItemAt(i);calculateTotalPrice();"></em>
               <em *ngIf="!item.included" class="fa fa-ban excluded-state" (click)="includeItemAt(i);calculateTotalPrice();"></em>
-            </button>  
+            </button>
 		    <button class="remove-button" (click)="removeItemAt(i);calculateTotalPrice();">
               <em class="fa fa-trash"></em>
             </button>
