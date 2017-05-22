@@ -194,11 +194,15 @@ export class CartComponent implements OnInit {
       counter[item['category']] += item['count'];
      }
     for(let catego of this.categories)
-     {
-       if(counter[catego] >= this.categoryBound)
-       {
-           console.log(catego+"  alert!");
-       }
+    {
+      if(counter[catego] >= this.categoryBound)
+      {
+        document.getElementById(catego).setAttribute("class", "col-sm-1 com-md-1 btn btn-danger")
+      }
+      else
+      {
+        document.getElementById(catego).setAttribute("class", "col-sm-1 com-md-1 btn btn-default")
+      }
      }
   }
 }

@@ -78,14 +78,13 @@ export class ItemListComponent implements OnInit {
   }
 
   typeOrder(event){
-    if(this.categorizer===event.target.id){
+    if(this.categorizer===event.target.innerText){
       this.categorizer = ''
       this.userFilter = { name : '', category: this.categorizer };
     }
     else{
-      this.categorizer=event.target.id;
+      this.categorizer=event.target.innerText;
       this.userFilter = { name : '', category: this.categorizer };
     }
-    console.log(event.target.id);
   }
 }
