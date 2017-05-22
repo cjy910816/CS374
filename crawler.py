@@ -36,6 +36,7 @@ class Item(object):
                 descImgs=self.descUrls,
                 price=self.price,
                 count=1,
+                category=self.productType,
                 checked=True)
 
 def getSoup(url):
