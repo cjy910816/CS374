@@ -34,6 +34,7 @@ export class CartComponent implements OnInit {
   private categoryBound =2;
   //img should be category;
   public isFold = true;
+  private categories =  ['water', 'cleanser', 'detergent',  'oralcare', 'tissue', 'mask' ]
 
     constructor(public cartService: CartService) {
       this.totalPrice = 39450;
@@ -184,20 +185,20 @@ export class CartComponent implements OnInit {
   }
   checkOverSet()
   {
-    // let counters;
-    // for(category of categories){
-    //   for(item of this.items.){
-    //      if(category === item.category)
-    //      counters[category] += 1;
-    //   }
-    // }
-    // for(counter of counters)
-    // {
-    //   if(counter >= this.categoryBound)
-    //   {
-    //       //해당 클래스의 button class attribute 를 danger 혹은 warning 으로 바꿈
-    //   }
-    // }
-    console.log("checkOverSet");
+    // let categories =  ['water', 'cleanser', 'detergent',  'oralcare', 'tissue', 'mask' ]
+    let counter={};
+    for(let catego of this.categories){
+      counter[catego]=0;
+    }
+    for(let item of this.items){
+      counter[item['category']] += item['count'];
+     }
+    for(let catego of this.categories)
+     {
+       if(counter[catego] >= this.categoryBound)
+       {
+           console.log(catego+"  alert!");
+       }
+     }
   }
 }
