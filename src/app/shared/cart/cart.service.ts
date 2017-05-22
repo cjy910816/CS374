@@ -5,6 +5,7 @@ import * as _ from "lodash";
 export class Item {
   public id:number;
   public name:string;
+  public descImgs:string;
   public img:string;
   public price:number;
   public category:string;
@@ -12,15 +13,16 @@ export class Item {
   public checked:boolean;
   public included:boolean;
 
-  constructor(id, name, img, price, category) {
-    this.id = id;
-    this.name = name;
-    this.img = img;
-    this.price = price;
-	this.category = category;
+  constructor(args) {
+    this.id = args['id'];
+    this.name = args['name'];
+    this.descImgs = args['descImgs'];
+    this.img = args['img'];
+    this.price = args['price'];
+    this.category = args['category'];
     this.count = 1;
     this.checked = true;
-	this.included = true;
+	  this.included = true;
   }
 
   totalPrice() {
