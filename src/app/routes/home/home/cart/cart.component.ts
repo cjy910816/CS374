@@ -28,13 +28,15 @@ export class CartComponent implements OnInit {
     "progress-bar-red-2",
   ];
 
-  private sort = 'name';
-  private categorizer = '';
-  private userFilter : any = { name : '', img : this.categorizer};
+  public sort = 'name';
+  private categorizer = 'all';
+  private userFilter : any = { name : '', category: ''};
   private categoryBound =2;
   //img should be category;
   public isFold = true;
-  private categories =  ['water', 'cleanser', 'detergent',  'oralcare', 'tissue', 'mask' ]
+  private categories =  ['all', 'water', 'cleanser', 'detergent',  'oralcare', 'tissue', 'mask' ];
+  private availCategories = ['all'];
+  private numPerCategory = {all: 0};
 
     constructor(public cartService: CartService) {
       this.totalPrice = 39450;
@@ -44,8 +46,17 @@ export class CartComponent implements OnInit {
       this.cartService.getItems().subscribe((items) => {
         this.items = items;
         this.calculateTotalPrice();
-        this.checkOverSet();
+        this.updateCategoryMetaInfo();
+        //this.checkOverSet();
       });
+    }
+
+    updateCategoryMetaInfo() {
+      this.availCategories = ['all'].concat(
+        _.uniq(_.map(this.items, 'category')));
+      this.numPerCategory = _.countBy(this.items, "category");
+      this.numPerCategory["all"] = _.size(this.items);
+
     }
 
     fold() {
@@ -132,12 +143,13 @@ export class CartComponent implements OnInit {
     this.sort='name'
   }
   typeOrder(event){
-    if(this.categorizer===event.target.id){
-      this.categorizer = ''
-      this.userFilter = { name : '', category: this.categorizer };
+
+    if(event.target.id === 'all'){
+      this.categorizer = event.target.id;
+      this.userFilter = { name : '', category: '' };
     }
     else{
-      this.categorizer=event.target.id;
+      this.categorizer = event.target.id;
       this.userFilter = { name : '', category: this.categorizer };
     }
     console.log(event.target.id);
