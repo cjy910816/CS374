@@ -172,6 +172,10 @@
   }
 
   .thumbnail {
-    height: 340px
+    height: 330px;
+  }
+
+  .thumbnail img{
+    max-height: 170px;
   }
 }
