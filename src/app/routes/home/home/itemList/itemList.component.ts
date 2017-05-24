@@ -1600,14 +1600,13 @@ export class ItemListComponent implements OnInit {
     this.detailModal.show();
   }
 
-  typeOrder(event){
-    if(this.categorizer===event.target.innerText){
-      this.categorizer = ''
-      this.userFilter = { name : '', category: this.categorizer };
+  typeOrder(type){
+    if(this.categorizer == type){
+      this.categorizer = '';
+    }else{
+      this.categorizer = type;
+
     }
-    else{
-      this.categorizer=event.target.innerText;
-      this.userFilter = { name : '', category: this.categorizer };
-    }
+    this.userFilter.category = this.categorizer;
   }
 }

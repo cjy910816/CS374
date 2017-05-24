@@ -1,21 +1,41 @@
 <div class="button-list-container">
-  <button type="button" class="col-sm-2 col-md-2 btn btn-default" (click)="priceOrder()">가격순 정렬</button>
-  <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="nameOrder()">이름순 정렬 </button>
+  <button type="button" class="col-sm-2 col-md-2 btn btn-warning btn-outline" (click)="priceOrder()"
+          [ngClass]="{'active': sort == 'price' }">가격순 정렬
+  </button>
+  <button type="button" class="col-sm-2 com-md-2 btn btn-warning btn-outline" (click)="nameOrder()"
+          [ngClass]="{'active': sort == 'name' }">이름순 정렬
+  </button>
 
-  <input type="text" class="col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4"
-    [(ngModel)]="userFilter.name" placeholder="Search to type">
+  <div class="col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">
+    <input type="text" class="form-control"
+           [(ngModel)]="userFilter.name" placeholder="Search to type">
+  </div>
+
 </div>
 <div class="button-list-container">
-      <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="typeOrder($event)" id="listwater">water</button>
-      <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="typeOrder($event)" id="listcleanser">cleanser</button>
-      <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="typeOrder($event)" id="listdetergent">detergent</button>
-      <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="typeOrder($event)" id="listoralcare">oralcare</button>
-      <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="typeOrder($event)" id="listtissue">tissue</button>
-      <button type="button" class="col-sm-2 com-md-2 btn btn-default" (click)="typeOrder($event)" id="listmask">mask</button>
+  <button type="button" class="col-sm-2 com-md-2 btn btn-info btn-outline" (click)="typeOrder('water')"
+          [ngClass]="{'active': categorizer == 'water' }">water
+  </button>
+  <button type="button" class="col-sm-2 com-md-2 btn btn-info btn-outline" (click)="typeOrder('cleanser')"
+          [ngClass]="{'active': categorizer == 'cleanser' }">cleanser
+  </button>
+  <button type="button" class="col-sm-2 com-md-2 btn btn-info btn-outline" (click)="typeOrder('detergent')"
+          [ngClass]="{'active': categorizer == 'detergent' }">detergent
+  </button>
+  <button type="button" class="col-sm-2 com-md-2 btn btn-info btn-outline" (click)="typeOrder('oralcare')"
+          [ngClass]="{'active': categorizer == 'oralcare' }">oralcare
+  </button>
+  <button type="button" class="col-sm-2 com-md-2 btn btn-info btn-outline" (click)="typeOrder('tissue')"
+          [ngClass]="{'active': categorizer == 'tissue' }">tissue
+  </button>
+  <button type="button" class="col-sm-2 com-md-2 btn btn-info btn-outline" (click)="typeOrder('mask')"
+          [ngClass]="{'active': categorizer == 'mask' }">mask
+  </button>
   <br>
 </div>
 <div class="item-list-container clearfix" [style.height]="height+'px'">
-  <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter" class="col-sm-3 col-md-2 item">
+  <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter"
+       class="col-xs-3 col-sm-2 col-lg-2 item">
     <div class="thumbnail">
       <img src="{{item.img}}" (click)="showDetail(item)">
       <div class="caption clearfix">
@@ -23,15 +43,16 @@
         <div>
           <span>{{item.price | currency:'KRW':true}}</span>
           <div class="pull-right input-group item-count">
-            <input type="number" class="form-control" min=1 max=99 value={{item.count}} [(ngModel)]="item.count" (change)="item.setCount($event.target.value)"/>
+            <input type="number" class="form-control" min=1 max=99 value={{item.count}} [(ngModel)]="item.count"
+                   (change)="item.setCount($event.target.value)"/>
             <div class="input-group-btn">
-              <button type="button" class="btn btn-default" (click)="item.addCount()">+</button>
-              <button type="button" class="btn btn-default" (click)="item.subCount()">-</button>
+              <span type="button" class="btn btn-default" (click)="item.addCount()">+</span>
+              <span type="button" class="btn btn-default" (click)="item.subCount()">-</span>
             </div>
           </div>
         </div>
         <div class="pull-right">
-          <button type="button" class="btn btn-primary" (click)="addItem(item)">장바구니 담기</button>
+          <button type="button" class="btn btn-primary btn-outline" (click)="addItem(item)">장바구니 담기</button>
         </div>
       </div>
     </div>
@@ -54,7 +75,7 @@
               </div>
             </div>
             <!--<div class="price">-->
-              <!--{{selectedItem.price | currency:'KRW':true}}-->
+            <!--{{selectedItem.price | currency:'KRW':true}}-->
             <!--</div>-->
           </div>
         </div>
