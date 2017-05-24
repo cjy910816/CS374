@@ -11,7 +11,6 @@ export class Item {
   public category:string;
   public count:number;
   public checked:boolean;
-  public included:boolean;
 
   constructor(args) {
     this.id = args['id'];
@@ -22,13 +21,9 @@ export class Item {
     this.category = args['category'];
     this.count = 1;
     this.checked = true;
-	  this.included = true;
   }
 
   totalPrice() {
-    if (!this.included) {
-      return 0;
-    }
     return this.price * this.count;
   }
 
@@ -74,23 +69,6 @@ export class CartService {
       this.items.next(items);
     }
 
-    selectItemAt(index) {
-      let items = this.items.getValue();
-      items[index]["checked"] = true;
-    }
-
-    includeItemAt(index) {
-      let items = this.items.getValue();
-      items[index]["included"] = true;
-      this.items.next(items);
-    }
-
-    excludeItemAt(index) {
-      let items = this.items.getValue();
-      items[index]["included"] = false;
-      this.items.next(items);
-    }
-
     removeItemById(id) {
       let items = this.items.getValue();
       items = _.remove(items, (i) => i.id === id);
@@ -102,7 +80,6 @@ export class CartService {
       items.splice(index, 1);
       this.items.next(items);
     }
-
 
     getItems() {
       return this.items.asObservable();
