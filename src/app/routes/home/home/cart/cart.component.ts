@@ -34,7 +34,8 @@ export class CartComponent implements OnInit {
   private categoryBound =2;
   //img should be category;
   public isFold = true;
-  private categories =  ['all', 'water', 'cleanser', 'detergent',  'oralcare', 'tissue', 'mask' ]
+  private categories =  ['all', 'water', 'cleanser', 'detergent',  'oralcare', 'tissue', 'mask' ];
+  private availCategories = ['all'];
 
     constructor(public cartService: CartService) {
       this.totalPrice = 39450;
@@ -44,8 +45,14 @@ export class CartComponent implements OnInit {
       this.cartService.getItems().subscribe((items) => {
         this.items = items;
         this.calculateTotalPrice();
+        this.updateAvailCategories();
         //this.checkOverSet();
       });
+    }
+
+    updateAvailCategories() {
+      this.availCategories = ['all'].concat(_.uniq(_.map(this.items, 'category')));
+
     }
 
     fold() {
