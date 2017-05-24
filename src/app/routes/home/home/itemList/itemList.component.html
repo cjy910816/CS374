@@ -36,12 +36,12 @@
 <div class="item-list-container clearfix" [style.height]="height+'px'">
   <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter"
        class="col-xs-3 col-sm-2 col-lg-2 item">
-    <div class="thumbnail">
+    <div class="thumbnail bg-white">
       <img src="{{item.img}}" (click)="showDetail(item)">
       <div class="caption clearfix">
         <h5>{{item.name}}</h5>
         <div>
-          <span>{{item.price | currency:'KRW':true}}</span>
+          <div class="pull-right" style="margin-bottom: 5px;">{{item.price | currency:'KRW':true}}</div>
           <div class="pull-right input-group item-count">
             <input type="number" class="form-control" min=1 max=99 value={{item.count}} [(ngModel)]="item.count"
                    (change)="item.setCount($event.target.value)"/>
@@ -51,7 +51,7 @@
             </div>
           </div>
         </div>
-        <div class="pull-right">
+        <div class="pull-right" style="margin-top: 5px;">
           <button type="button" class="btn btn-primary btn-outline" (click)="addItem(item)">장바구니 담기</button>
         </div>
       </div>
