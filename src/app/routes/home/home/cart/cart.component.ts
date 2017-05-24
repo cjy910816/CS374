@@ -29,12 +29,12 @@ export class CartComponent implements OnInit {
   ];
 
   public sort = 'name';
-  private categorizer = '';
-  private userFilter : any = { name : '', img : this.categorizer};
+  private categorizer = 'all';
+  private userFilter : any = { name : '', category: ''};
   private categoryBound =2;
   //img should be category;
   public isFold = true;
-  private categories =  ['water', 'cleanser', 'detergent',  'oralcare', 'tissue', 'mask' ]
+  private categories =  ['all', 'water', 'cleanser', 'detergent',  'oralcare', 'tissue', 'mask' ]
 
     constructor(public cartService: CartService) {
       this.totalPrice = 39450;
@@ -44,7 +44,7 @@ export class CartComponent implements OnInit {
       this.cartService.getItems().subscribe((items) => {
         this.items = items;
         this.calculateTotalPrice();
-        this.checkOverSet();
+        //this.checkOverSet();
       });
     }
 
@@ -132,12 +132,13 @@ export class CartComponent implements OnInit {
     this.sort='name'
   }
   typeOrder(event){
-    if(this.categorizer===event.target.id){
-      this.categorizer = ''
-      this.userFilter = { name : '', category: this.categorizer };
+
+    if(event.target.id === 'all'){
+      this.categorizer = event.target.id;
+      this.userFilter = { name : '', category: '' };
     }
     else{
-      this.categorizer=event.target.id;
+      this.categorizer = event.target.id;
       this.userFilter = { name : '', category: this.categorizer };
     }
     console.log(event.target.id);
