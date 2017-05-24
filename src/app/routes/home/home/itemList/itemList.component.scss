@@ -10,12 +10,14 @@
 }
 
 .item-count {
-  width: 140px;
+  width: 100%;
 
 }
 
 .button-list-container{
-  height: 50px;
+  //height: 50px;
+  overflow: hidden;
+  padding: 10px;
 }
 
 .modal-content{
@@ -29,4 +31,11 @@
 
   max-height:700px;
   overflow: auto;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
