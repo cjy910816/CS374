@@ -36,6 +36,7 @@ export class CartComponent implements OnInit {
   public isFold = true;
   private categories =  ['all', 'water', 'cleanser', 'detergent',  'oralcare', 'tissue', 'mask' ];
   private availCategories = ['all'];
+  private numPerCategory = {all: 0};
 
     constructor(public cartService: CartService) {
       this.totalPrice = 39450;
@@ -45,13 +46,16 @@ export class CartComponent implements OnInit {
       this.cartService.getItems().subscribe((items) => {
         this.items = items;
         this.calculateTotalPrice();
-        this.updateAvailCategories();
+        this.updateCategoryMetaInfo();
         //this.checkOverSet();
       });
     }
 
-    updateAvailCategories() {
-      this.availCategories = ['all'].concat(_.uniq(_.map(this.items, 'category')));
+    updateCategoryMetaInfo() {
+      this.availCategories = ['all'].concat(
+        _.uniq(_.map(this.items, 'category')));
+      this.numPerCategory = _.countBy(this.items, "category");
+      this.numPerCategory["all"] = _.size(this.items);
 
     }
 

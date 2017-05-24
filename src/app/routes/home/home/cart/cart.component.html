@@ -75,7 +75,10 @@
     </div>
 
     <div class="btn-group" *ngFor="let key of availCategories">
-      <label class="btn btn-info" [ngClass]="{'btn-outline':categorizer !== key}" [(ngModel)]="categorizer" btnRadio="'{{key}}'" id="{{key}}" (click)="typeOrder($event)">{{key}}</label>
+      <label class="btn btn-info" [ngClass]="{'btn-outline':categorizer !== key}" [(ngModel)]="categorizer" btnRadio="'{{key}}'" id="{{key}}" (click)="typeOrder($event)">
+        {{key}}
+        <span class="badge badge-pill badge-primary">{{numPerCategory[key]}}</span>
+      </label>
     </div>
   <div class=checker>
     <input type="checkbox" name="select" id="" [checked]="isAllChecked()" (change)="checkAll($event.target.checked);calculateTotalPrice();"/> 전체 선택
