@@ -65,11 +65,17 @@
     <button type="button" class="btn btn-default" (click)="readyAlert()">주문하기</button>
     </div>
   </div>
+
+  <div>
+
+  </div>
+    <div class="btn-group">
+      <label class="btn btn-warning" [ngClass]="{'btn-outline':sort !== 'price'}" [(ngModel)]="sort" btnRadio="'price'" (click)="priceOrder()">가격 순</label>
+      <label class="btn btn-warning" [ngClass]="{'btn-outline':sort !== 'name'}" [(ngModel)]="sort" btnRadio="'name'" (click)="nameOrder()">이름 순</label>
+    </div>
   <div>
     <input type="checkbox" name="select" id="" [checked]="isAllChecked()" (change)="checkAll($event.target.checked);calculateTotalPrice();"/> 전체 선택
     <button type="button" class="btn btn-default" (click)="removeSelected();">선택 삭제</button>
-    <button type="button" class="btn pull-right btn-default" (click)="nameOrder()">이름순 정렬 </button>
-    <button type="button" class="btn pull-right btn-default" (click)="priceOrder()">가격순 정렬</button>
     <input type="text" class="pull-right"  [(ngModel)]="userFilter.name" placeholder="Search to type">
 
     <button type="button" class="col-sm-1 com-md-1 btn btn-default" (click)="typeOrder($event)" id="water">water</button>

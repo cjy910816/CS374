@@ -28,7 +28,7 @@ export class CartComponent implements OnInit {
     "progress-bar-red-2",
   ];
 
-  private sort = 'name';
+  public sort = 'name';
   private categorizer = '';
   private userFilter : any = { name : '', img : this.categorizer};
   private categoryBound =2;
