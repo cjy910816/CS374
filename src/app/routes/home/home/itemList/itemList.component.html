@@ -13,22 +13,25 @@
 
 </div>
 <div class="button-list-container">
-  <button type="button" class="col-sm-2 com-md-2 btn btn-info btn-outline" (click)="typeOrder('water')"
+  <button type="button" class="col-sm-1 com-md-1 btn btn-info btn-outline" (click)="typeOrder('')"
+          [ngClass]="{'active': categorizer == '' }">All
+  </button>
+  <button type="button" class="col-sm-1 com-md-1 btn btn-info btn-outline" (click)="typeOrder('water')"
           [ngClass]="{'active': categorizer == 'water' }">water
   </button>
-  <button type="button" class="col-sm-2 com-md-2 btn btn-info btn-outline" (click)="typeOrder('cleanser')"
+  <button type="button" class="col-sm-1 com-md-1 btn btn-info btn-outline" (click)="typeOrder('cleanser')"
           [ngClass]="{'active': categorizer == 'cleanser' }">cleanser
   </button>
-  <button type="button" class="col-sm-2 com-md-2 btn btn-info btn-outline" (click)="typeOrder('detergent')"
+  <button type="button" class="col-sm-1 com-md-1 btn btn-info btn-outline" (click)="typeOrder('detergent')"
           [ngClass]="{'active': categorizer == 'detergent' }">detergent
   </button>
-  <button type="button" class="col-sm-2 com-md-2 btn btn-info btn-outline" (click)="typeOrder('oralcare')"
+  <button type="button" class="col-sm-1 com-md-1 btn btn-info btn-outline" (click)="typeOrder('oralcare')"
           [ngClass]="{'active': categorizer == 'oralcare' }">oralcare
   </button>
-  <button type="button" class="col-sm-2 com-md-2 btn btn-info btn-outline" (click)="typeOrder('tissue')"
+  <button type="button" class="col-sm-1 com-md-1 btn btn-info btn-outline" (click)="typeOrder('tissue')"
           [ngClass]="{'active': categorizer == 'tissue' }">tissue
   </button>
-  <button type="button" class="col-sm-2 com-md-2 btn btn-info btn-outline" (click)="typeOrder('mask')"
+  <button type="button" class="col-sm-1 com-md-1 btn btn-info btn-outline" (click)="typeOrder('mask')"
           [ngClass]="{'active': categorizer == 'mask' }">mask
   </button>
   <br>
