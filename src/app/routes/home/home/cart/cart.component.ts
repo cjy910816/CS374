@@ -57,6 +57,10 @@ export class CartComponent implements OnInit {
       this.numPerCategory = _.countBy(this.items, "category");
       this.numPerCategory["all"] = _.size(this.items);
 
+      if (this.availCategories.indexOf(this.categorizer) === -1) {
+        this.updateCategorizer("all");
+      }
+
     }
 
     fold() {
@@ -75,6 +79,10 @@ export class CartComponent implements OnInit {
 
   removeItemAt(i) {
     this.cartService.removeItemAt(i);
+  }
+
+  removeItemById(id) {
+    this.cartService.removeItemById(id);
   }
 
   calculateTotalPrice() {
@@ -142,17 +150,21 @@ export class CartComponent implements OnInit {
   nameOrder(){
     this.sort='name'
   }
-  typeOrder(event){
 
-    if(event.target.id === 'all'){
-      this.categorizer = event.target.id;
+  updateCategorizer(categorizer) {
+    if(categorizer === 'all'){
+      this.categorizer = categorizer;
       this.userFilter = { name : '', category: '' };
     }
     else{
-      this.categorizer = event.target.id;
+      this.categorizer = categorizer;
       this.userFilter = { name : '', category: this.categorizer };
     }
-    console.log(event.target.id);
+
+  }
+
+  typeOrder(event){
+    this.updateCategorizer(event.target.id);
   }
   checkOverSet()
   {
