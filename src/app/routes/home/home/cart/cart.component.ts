@@ -123,26 +123,32 @@ export class CartComponent implements OnInit {
   }
 
   isAllChecked() {
-    return _.every(this.items, (i) => i['checked']);
+    if (this.categorizer === "all")
+      return _.every(this.items, "checked");
+    return _.every(_.filter(this.items, {category:this.categorizer}), 'checked');
   }
 
   checkAll(checked) {
-    for (const item of this.items) {
+    let items = this.items;
+    if(this.categorizer !== "all")
+      items = _.filter(items, {category: this.categorizer})
+
+    for (const item of items) {
       item['checked'] = checked;
     }
   }
 
   removeSelected() {
-    let checkedIdx = [];
-    this.items.forEach((item, idx) => {
-      if (item['checked']) {
-        checkedIdx.push(idx);
-      }
-    });
-    checkedIdx = _.reverse(checkedIdx);
-    for (const idx of checkedIdx) {
-      this.cartService.removeItemAt(idx);
+    let items = this.items;
+    if(this.categorizer !== "all")
+      items = _.filter(items, {category: this.categorizer})
+
+    let itemIds = _.map(_.filter(items, "checked"), "id")
+
+    for (let id of itemIds) {
+      this.cartService.removeItemById(id);
     }
+
   }
   priceOrder(){
     this.sort='price'
