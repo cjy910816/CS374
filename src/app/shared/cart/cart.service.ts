@@ -71,7 +71,7 @@ export class CartService {
 
     removeItemById(id) {
       let items = this.items.getValue();
-      items = _.remove(items, (i) => i.id === id);
+      items = _.remove(items, (i) => i.id !== id);
       this.items.next(items);
     }
 
@@ -79,6 +79,12 @@ export class CartService {
       let items = this.items.getValue();
       items.splice(index, 1);
       this.items.next(items);
+    }
+
+    getItemById(id) {
+        let items = this.items.getValue();
+        let itemInCart = _.find(items, (i) => i.id === id);
+        return itemInCart; 
     }
 
     getItems() {

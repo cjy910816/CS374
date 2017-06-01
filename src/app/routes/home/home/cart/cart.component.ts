@@ -57,6 +57,10 @@ export class CartComponent implements OnInit {
       this.numPerCategory = _.countBy(this.items, "category");
       this.numPerCategory["all"] = _.size(this.items);
 
+      if (this.availCategories.indexOf(this.categorizer) === -1) {
+        this.updateCategorizer("all");
+      }
+
     }
 
     fold() {
@@ -75,6 +79,10 @@ export class CartComponent implements OnInit {
 
   removeItemAt(i) {
     this.cartService.removeItemAt(i);
+  }
+
+  removeItemById(id) {
+    this.cartService.removeItemById(id);
   }
 
   calculateTotalPrice() {
@@ -115,26 +123,32 @@ export class CartComponent implements OnInit {
   }
 
   isAllChecked() {
-    return _.every(this.items, (i) => i['checked']);
+    if (this.categorizer === "all")
+      return _.every(this.items, "checked");
+    return _.every(_.filter(this.items, {category:this.categorizer}), 'checked');
   }
 
   checkAll(checked) {
-    for (const item of this.items) {
+    let items = this.items;
+    if(this.categorizer !== "all")
+      items = _.filter(items, {category: this.categorizer})
+
+    for (const item of items) {
       item['checked'] = checked;
     }
   }
 
   removeSelected() {
-    let checkedIdx = [];
-    this.items.forEach((item, idx) => {
-      if (item['checked']) {
-        checkedIdx.push(idx);
-      }
-    });
-    checkedIdx = _.reverse(checkedIdx);
-    for (const idx of checkedIdx) {
-      this.cartService.removeItemAt(idx);
+    let items = this.items;
+    if(this.categorizer !== "all")
+      items = _.filter(items, {category: this.categorizer})
+
+    let itemIds = _.map(_.filter(items, "checked"), "id")
+
+    for (let id of itemIds) {
+      this.cartService.removeItemById(id);
     }
+
   }
   priceOrder(){
     this.sort='price'
@@ -142,17 +156,21 @@ export class CartComponent implements OnInit {
   nameOrder(){
     this.sort='name'
   }
-  typeOrder(event){
 
-    if(event.target.id === 'all'){
-      this.categorizer = event.target.id;
+  updateCategorizer(categorizer) {
+    if(categorizer === 'all'){
+      this.categorizer = categorizer;
       this.userFilter = { name : '', category: '' };
     }
     else{
-      this.categorizer = event.target.id;
+      this.categorizer = categorizer;
       this.userFilter = { name : '', category: this.categorizer };
     }
-    console.log(event.target.id);
+
+  }
+
+  typeOrder(event){
+    this.updateCategorizer(event.target.id);
   }
   checkOverSet()
   {
