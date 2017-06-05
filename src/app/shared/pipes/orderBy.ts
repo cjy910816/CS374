@@ -12,6 +12,9 @@ export class OrderByPipe implements PipeTransform {
         if (!expression) {
           return a > b ? 1 : -1;
         }
+        if(a[expression]===b[expression]){
+          return a['id']>b['id'] ? 1 : -1;
+        }
 
         return a[expression] > b[expression] ? 1 : -1;
       });
