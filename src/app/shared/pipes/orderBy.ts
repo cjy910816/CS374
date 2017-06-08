@@ -8,16 +8,14 @@ export class OrderByPipe implements PipeTransform {
         return value;
       }
 
-      if(expression.length > 1){
-        value = value.filter((value, index)=>{
-          return (index%8) >= expression[1];
-        });
-      }
-
       let array: any[] = value.sort((a: any, b: any): number => {
         if (!expression) {
           return a > b ? 1 : -1;
         }
+        if(a[expression]===b[expression]){
+          return a['id']>b['id'] ? 1 : -1;
+        }
+
         return a[expression] > b[expression] ? 1 : -1;
       });
 
