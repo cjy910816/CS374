@@ -1,12 +1,11 @@
 <div class="cart-container" [style.height]="height+'px'">
-  <div class="header clearfix">
+  <div class="header clearfix" (click)="toggle()">
     나의 장바구니
     <span *ngIf="isFold">
-      <button type="button" class="btn btn-transparent pull-right" (click)="unfold()"><em class="icon-arrow-up"></em> </button>
+      <em class="fold-icon icon-arrow-up pull-right"></em>
     </span>
     <span *ngIf="!isFold">
-      <button type="button" class="btn btn-transparent pull-right" (click)="fold()"><em
-        class="icon-arrow-down"></em> </button>
+      <em class="fold-icon icon-arrow-down pull-right"></em>
     </span>
   </div>
   <div class="status-bar row">
@@ -86,7 +85,7 @@
     <input type="text" class="pull-right"  [(ngModel)]="userFilter.name" placeholder="Search to type">
   </div>
   <div class="row items clearfix">
-    <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter; let i = index" class="col-sm-1" [attr.data-index]="i"   id="{{item.id}}" (click)="selectItem(i)">
+    <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter; let i = index" class="col-sm-2 item" [attr.data-index]="i"   id="{{item.id}}" (click)="selectItem(i)">
       <div class="thumbnail thumbnail-cart">
 	    <input type="checkbox" class="item-checkbox" name="select" id="item-checkbox"
           [(ngModel)]="item.checked" [checked]="item.checked"
@@ -96,17 +95,21 @@
               <em class="fa fa-times"></em>
             </button>
           </span>
-        <img src="{{item.img}}">
-        <div class="caption">
-          <h6>{{item.name}}</h6>
-          <div>
-              <span>{{item.price | currency:'KRW':true}}</span>
-            <div class="pull-right input-group item-count">
-              <input type="number" class="form-control" min=1 max=99 value={{item.count}} [(ngModel)]="item.count" (change)="item.setCount($event.target.value);calculateTotalPrice();"/>
-              <div class="input-group-btn">
-                <button type="button" class="btn btn-default btn-sm" (click)="item.addCount();calculateTotalPrice();">+</button>
-                <button type="button" class="btn btn-default btn-sm" (click)="item.subCount();calculateTotalPrice();">-</button>
-              </div>
+        <div class="info">
+          <div class="image">
+            <img src="{{item.img}}">
+          </div>
+          <div class="caption">
+            <h6>{{item.name}}</h6>
+            <div>
+                <span>{{item.price | currency:'KRW':true}}</span>
+              <div class="pull-right input-group item-count">
+                <input type="number" class="form-control" min=1 max=99 value={{item.count}} [(ngModel)]="item.count" (change)="item.setCount($event.target.value);calculateTotalPrice();"/>
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm" (click)="item.addCount();calculateTotalPrice();">+</button>
+                  <button type="button" class="btn btn-default btn-sm" (click)="item.subCount();calculateTotalPrice();">-</button>
+                </div>
+            </div>
           </div>
         </div>
       </div>

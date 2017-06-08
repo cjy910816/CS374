@@ -145,8 +145,10 @@
     }
   }
   .items{
-    height: 390px;
+    height: 195px;
     overflow-y: scroll;;
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
   .thumbnail-cart{
@@ -173,11 +175,11 @@
   }
 
   .thumbnail {
-    height: 250px;
+    height: 140px;
   }
 
   .thumbnail img{
-    max-height: 90px;
+    max-height: 70px;
   }
   .filter {
     padding-left:10px;
@@ -205,4 +207,28 @@ input::-webkit-inner-spin-button {
     background-color: #e4adad;
     border: 2px solid red !important;
   }
+}
+
+.item {
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.thumbnail {
+  margin-bottom: 0px;
+}
+
+.fold-icon {
+  padding-right: 10px;
+
+}
+
+.item .info {
+  display: flex;
+}
+
+h6 {
+  margin: 0px;
 }

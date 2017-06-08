@@ -10,7 +10,7 @@ declare var $: any;
 })
 export class CartComponent implements OnInit {
   private items: Object[] = [];
-  private height = 120;
+  private height = 105;
   private totalPrice = 0;
   private scaleNumbers:number[] = [5000,10000,15000,20000,25000,30000];
   private progressBarMax = 30000;
@@ -66,12 +66,21 @@ export class CartComponent implements OnInit {
 
     fold() {
       this.isFold = true;
-      this.height = 120;
+      this.height = 105;
     }
 
     unfold() {
       this.isFold = false;
-      this.height = 500;
+      this.height = 380;
+    }
+
+    toggle() {
+      if (this.isFold) {
+        this.unfold();
+      }
+      else {
+        this.fold();
+      }
     }
 
   readyAlert() {
