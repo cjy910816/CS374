@@ -14,7 +14,8 @@
     width: 100%;
     padding: 10px;
     color: white;
-    font-size: 20px;
+    font-size: 15px;
+    height: 37px;
  }
 
   & > .body{
@@ -26,7 +27,7 @@
     padding: 10px;
 	  height: 80px;
   }
-  
+
   .progress-bar-purple-1{
     background-color: #AA00AA !important;
   }
@@ -66,18 +67,18 @@
 
   .progressbar-section{
     position: relative;
-	
+
 	& > #scale-graph{
 	  position: absolute;
       top: 0;
       width: 90%;
       background: transparent;
       overflow: visible;
-	  
+
 	  & > #scale-progress-bar{
 	    background-color: rgba(128, 128, 128, 0.2) !important;
 	  }
-	  
+
 	  .scale{
 	    position: relative;
 	    width: 120px;
@@ -85,19 +86,19 @@
 	    left: 60px;
 	    top: 16px;
 	    float: right;
-	  
+
 	    .scale-image{
 	      position: relative;
 	      width: 12px;
 	      height: 12px;
 	    }
-	  
+
 	    .scale-number{
 	      color: #222222
 	    }
 	  }
 	}
-	
+
     & > #freeship-graph{
       position: absolute;
       top: 0;
@@ -108,7 +109,7 @@
       & > #freeship-progress-bar{
 	    background-color: rgba(255, 255, 255, 0.0) !important;
       }
-	  
+
 	  .freeship{
 	    position: relative;
 	    width: 120px;
@@ -116,7 +117,7 @@
 		top: -36px;
 	    left: 60px;
 	    float: right;
-		
+
 		.freeship-image{
 	      position: relative;
 	      width: 44px;
@@ -124,7 +125,7 @@
 	    }
 	  }
     }
-	
+
 	& > #price-graph{
 	  position: absolute;
       top: 0;
@@ -132,13 +133,13 @@
       background: transparent;
       overflow: visible;
 	}
-	
+
   }
-  
+
   .price-section{
     position: relative;
     left: 16px;
-  
+
     .price-value{
       font-size: 20px;
     }
@@ -147,7 +148,7 @@
     height: 390px;
     overflow-y: scroll;;
   }
-  
+
   .thumbnail-cart{
     background-color: #EEEEEE;
     border: 3px solid #999999;
@@ -157,10 +158,10 @@
     width: 16px;
     height: 16px;
   }
-  
+
   .item-buttons{
     float: right;
-  
+
     .remove-button{
       background: none;
       border: none;
@@ -168,15 +169,15 @@
       font-weight: $close-font-weight;
       color: #333333
     }
-  
+
   }
 
   .thumbnail {
-    height: 300px;
+    height: 250px;
   }
 
   .thumbnail img{
-    max-height: 120px;
+    max-height: 90px;
   }
   .filter {
     padding-left:10px;
@@ -184,5 +185,24 @@
   .checker {
     padding-left:10px;
     padding-right:10px;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.active{
+  .thumbnail{
+    background-color: #e4adad;
+    border-color: red !important;
+  }
+
+  .progress-inner{
+    background-color: #e4adad;
+    border: 2px solid red !important;
   }
 }

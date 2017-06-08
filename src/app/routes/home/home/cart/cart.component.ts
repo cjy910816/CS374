@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../../shared/cart/cart.service';
 import * as _ from 'lodash';
+declare var $: any;
 
 @Component({
     selector: 'app-cart',
@@ -175,5 +176,11 @@ export class CartComponent implements OnInit {
         document.getElementById(catego).setAttribute("class", "col-sm-1 com-md-1 btn btn-default")
       }
      }
+  }
+
+  selectItem(index){
+    $(".active").removeClass("active");
+    $("#prog-"+this.items[index]["id"]).addClass("active");
+    $("#"+this.items[index]["id"]).addClass("active");
   }
 }

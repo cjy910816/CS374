@@ -34,23 +34,23 @@
       </div>
 	  <div id="price-graph" class="progress">
         <div *ngFor="let item of items; let i = index" [attr.data-index]="i" class="progress-bar"
-		  [style.width]="(item.totalPrice()/progressBarMax*100) + '%'">
-		  <div *ngIf="progressBarMax == 30000" [ngClass]="progressBarClasses[i%2]">
+		  [style.width]="(item.totalPrice()/progressBarMax*100) + '%'" id="{{'prog-'+item.id}}">
+		  <div *ngIf="progressBarMax == 30000" class="progress-inner" [ngClass]="progressBarClasses[i%2]" (click)="selectItem(i)">
             {{item.totalPrice() | currency:'KRW':true}}
           </div>
-		  <div *ngIf="progressBarMax == 50000" [ngClass]="progressBarClasses[i%2 + 2]">
+		  <div *ngIf="progressBarMax == 50000" class="progress-inner" [ngClass]="progressBarClasses[i%2 + 2]" (click)="selectItem(i)">
             {{item.totalPrice() | currency:'KRW':true}}
           </div>
-		  <div *ngIf="progressBarMax == 100000" [ngClass]="progressBarClasses[i%2 + 4]">
+		  <div *ngIf="progressBarMax == 100000" class="progress-inner" [ngClass]="progressBarClasses[i%2 + 4]" (click)="selectItem(i)">
             {{item.totalPrice() | currency:'KRW':true}}
           </div>
-		  <div *ngIf="progressBarMax == 200000" [ngClass]="progressBarClasses[i%2 + 6]">
+		  <div *ngIf="progressBarMax == 200000" class="progress-inner" [ngClass]="progressBarClasses[i%2 + 6]" (click)="selectItem(i)">
             {{item.totalPrice() | currency:'KRW':true}}
           </div>
-		  <div *ngIf="progressBarMax == 500000" [ngClass]="progressBarClasses[i%2 + 8]">
+		  <div *ngIf="progressBarMax == 500000" class="progress-inner" [ngClass]="progressBarClasses[i%2 + 8]" (click)="selectItem(i)">
             {{item.totalPrice() | currency:'KRW':true}}
           </div>
-		  <div *ngIf="progressBarMax == 1000000" [ngClass]="progressBarClasses[i%2 + 10]">
+		  <div *ngIf="progressBarMax == 1000000" class="progress-inner" [ngClass]="progressBarClasses[i%2 + 10]" (click)="selectItem(i)">
             {{item.totalPrice() | currency:'KRW':true}}
           </div>
         </div>
@@ -86,9 +86,9 @@
     <input type="text" class="pull-right"  [(ngModel)]="userFilter.name" placeholder="Search to type">
   </div>
   <div class="row items clearfix">
-    <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter; let i = index" class="col-sm-2" [attr.data-index]="i">
+    <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter; let i = index" class="col-sm-1" [attr.data-index]="i"   id="{{item.id}}" (click)="selectItem(i)">
       <div class="thumbnail thumbnail-cart">
-	    <input type="checkbox" class="item-checkbox" name="select" id=""
+	    <input type="checkbox" class="item-checkbox" name="select" id="item-checkbox"
           [(ngModel)]="item.checked" [checked]="item.checked"
           (ngModelChange)="calculateTotalPrice();"/>
           <span class="item-buttons">
@@ -98,15 +98,14 @@
           </span>
         <img src="{{item.img}}">
         <div class="caption">
-          <h6>[{{item.category}}]</h6>
           <h6>{{item.name}}</h6>
           <div>
               <span>{{item.price | currency:'KRW':true}}</span>
             <div class="pull-right input-group item-count">
               <input type="number" class="form-control" min=1 max=99 value={{item.count}} [(ngModel)]="item.count" (change)="item.setCount($event.target.value);calculateTotalPrice();"/>
               <div class="input-group-btn">
-                <button type="button" class="btn btn-default" (click)="item.addCount();calculateTotalPrice();">+</button>
-                <button type="button" class="btn btn-default" (click)="item.subCount();calculateTotalPrice();">-</button>
+                <button type="button" class="btn btn-default btn-sm" (click)="item.addCount();calculateTotalPrice();">+</button>
+                <button type="button" class="btn btn-default btn-sm" (click)="item.subCount();calculateTotalPrice();">-</button>
               </div>
           </div>
         </div>
