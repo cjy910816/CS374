@@ -1,12 +1,11 @@
 <div class="cart-container" [style.height]="height+'px'">
-  <div class="header clearfix">
+  <div class="header clearfix" (click)="toggle()">
     나의 장바구니
     <span *ngIf="isFold">
-      <button type="button" class="btn btn-transparent pull-right" (click)="unfold()"><em class="icon-arrow-up"></em> </button>
+      <em class="fold-icon icon-arrow-up pull-right"></em>
     </span>
     <span *ngIf="!isFold">
-      <button type="button" class="btn btn-transparent pull-right" (click)="fold()"><em
-        class="icon-arrow-down"></em> </button>
+      <em class="fold-icon icon-arrow-down pull-right"></em>
     </span>
   </div>
   <div class="status-bar row">
@@ -86,7 +85,7 @@
     <input type="text" class="pull-right"  [(ngModel)]="userFilter.name" placeholder="Search to type">
   </div>
   <div class="row items clearfix">
-    <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter; let i = index" class="col-sm-1" [attr.data-index]="i"   id="{{item.id}}" (click)="selectItem(i)">
+    <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter; let i = index" class="col-sm-1 item" [attr.data-index]="i"   id="{{item.id}}" (click)="selectItem(i)">
       <div class="thumbnail thumbnail-cart">
 	    <input type="checkbox" class="item-checkbox" name="select" id="item-checkbox"
           [(ngModel)]="item.checked" [checked]="item.checked"

@@ -74,6 +74,15 @@ export class CartComponent implements OnInit {
       this.height = 500;
     }
 
+    toggle() {
+      if (this.isFold) {
+        this.unfold();
+      }
+      else {
+        this.fold();
+      }
+    }
+
   readyAlert() {
       alert('준비중 입니다.');
   }
