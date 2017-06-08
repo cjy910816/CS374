@@ -85,7 +85,7 @@
     <input type="text" class="pull-right"  [(ngModel)]="userFilter.name" placeholder="Search to type">
   </div>
   <div class="row items clearfix">
-    <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter; let i = index" class="col-sm-1 item" [attr.data-index]="i"   id="{{item.id}}" (click)="selectItem(i)">
+    <div *ngFor="let item of items | orderByPipe : [ sort ] | filterBy : userFilter; let i = index" class="col-sm-2 item" [attr.data-index]="i"   id="{{item.id}}" (click)="selectItem(i)">
       <div class="thumbnail thumbnail-cart">
 	    <input type="checkbox" class="item-checkbox" name="select" id="item-checkbox"
           [(ngModel)]="item.checked" [checked]="item.checked"
@@ -95,17 +95,21 @@
               <em class="fa fa-times"></em>
             </button>
           </span>
-        <img src="{{item.img}}">
-        <div class="caption">
-          <h6>{{item.name}}</h6>
-          <div>
-              <span>{{item.price | currency:'KRW':true}}</span>
-            <div class="pull-right input-group item-count">
-              <input type="number" class="form-control" min=1 max=99 value={{item.count}} [(ngModel)]="item.count" (change)="item.setCount($event.target.value);calculateTotalPrice();"/>
-              <div class="input-group-btn">
-                <button type="button" class="btn btn-default btn-sm" (click)="item.addCount();calculateTotalPrice();">+</button>
-                <button type="button" class="btn btn-default btn-sm" (click)="item.subCount();calculateTotalPrice();">-</button>
-              </div>
+        <div class="info">
+          <div class="image">
+            <img src="{{item.img}}">
+          </div>
+          <div class="caption">
+            <h6>{{item.name}}</h6>
+            <div>
+                <span>{{item.price | currency:'KRW':true}}</span>
+              <div class="pull-right input-group item-count">
+                <input type="number" class="form-control" min=1 max=99 value={{item.count}} [(ngModel)]="item.count" (change)="item.setCount($event.target.value);calculateTotalPrice();"/>
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm" (click)="item.addCount();calculateTotalPrice();">+</button>
+                  <button type="button" class="btn btn-default btn-sm" (click)="item.subCount();calculateTotalPrice();">-</button>
+                </div>
+            </div>
           </div>
         </div>
       </div>
